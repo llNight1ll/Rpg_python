@@ -1,6 +1,16 @@
 import classe as classe
+import os
+
+def clear_console():
+    # Pour Windows
+    if os.name == 'nt':
+        os.system('cls')
+    # Pour Mac et Linux (os.name est 'posix')
+    else:
+        os.system('clear')
 
 def drawMap():
+    clear_console()
     m = 9
     n = 9
     l_map = [[" " for _ in range(m)] for _ in range(n)]
@@ -10,7 +20,7 @@ def drawMap():
     l_map[y][x] = "●"
 
     print(" ", end="")
-    while i  < 10 :
+    while i  < 15 :
         print("_ ", end="" )
         i = i + 1
 
