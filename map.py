@@ -18,11 +18,11 @@ def drawMap():
     for k in range(9):
         for j in range(9):
             if j == 8:
-                print(str(l_map[k][j]) + " |", end="\n")
+                print(str(l_map[k][j]) + "🌲|", end="\n")
             elif j == 0 :
-                print("| " + str(l_map[k][j]) + " ", end="" )
+                print("|🌲" + str(l_map[k][j]) + "🌲", end="" )
             else :
-                print(str(l_map[k][j]) + " ", end="")
+                print(str(l_map[k][j]) + "🌲", end="")
  
     print("position :" , str(x), str(y))
 

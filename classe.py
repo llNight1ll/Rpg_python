@@ -1,20 +1,21 @@
 class Entity :
-  def __init__(self, name, weapon, health, strength, position_x ,position_y):
+  def __init__(self, name, weapon, health, strength, defence, position_x ,position_y, lvl):
     self.name = name
     self.weapon = weapon
     self.health = health
     self.strength = strength
-    self.inventory = []
+    self.defence = defence
     self.position_x = position_x
     self.position_y = position_y
+    self.lvl = lvl
   
 
   def __str__(self):
     return self.name
 
-  def level_up(self,nb_lvl):
-    self.strength += nb_lvl
-    self.health += nb_lvl
+  def level_up(self,nb_lvl, base_strenght, base_health):
+    self.strength += (2 * base_strenght * nb_lvl )/100 + nb_lvl + 10
+    self.health += ( (2 * base_health + 40 )* nb_lvl )/100 + nb_lvl + 10
 
   def attack(self):
     pass
@@ -24,16 +25,13 @@ class Entity :
 
 class person(Entity) :
 
-  def __init__(self,name,age,job, position_x,position_y):
-    super().__init__(name,3,10,1, position_x, position_y)
-    self.age = age
-    self.job = job
+  def __init__(self,name, position_x, position_y):
+    super().__init__(name,"poing",10,10,10, position_x, position_y, 1)
     #self.inventory.append(health_potion("vie","health",1))
-    self.position_x = position_x
-    self.position_y = position_y
+    self.inventory = []
 
-  def level_up(self, nb_lvl):
-    age += 1
+ 
+  def level_up(nb_lvl):
     super().level_up(nb_lvl)
 
   def use_inventory (self, id):
@@ -43,24 +41,17 @@ class person(Entity) :
     self.inventory[choice].use(self)
     self.inventory.pop(choice)
 
-player = person("Bob",25,"Guerrier",5,0)
-#Player2 = person("Bobby",45,"Mage")
-#player.level_up(5)
+player = person("Bob",5,0)
 
-#print(player.health)
-#print(Player2.health)
 
 
 class monster(Entity) :
-  def __init__(self,name, monster_type):
+  def __init__(self,name, monster_type,position_x, position_y,lvl):
 
     self.monster_type = monster_type
-    self.inventory.append(health_potion("vie","health",1))
 
-    if monster_type == "Dragon":
-      super().__init__(name,50,100,10)
+    if monster_type == "orc":
+      super().__init__(name,"massue",100,10, position_x, position_y, lvl)
     else :
       super().__init__(name,5,10,1)
 
-#Monster1 = monster("Gloub","Dragon")
-#Monster2 = monster("Glouby","Gobelin")

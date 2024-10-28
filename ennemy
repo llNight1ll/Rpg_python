@@ -1,0 +1,4 @@
+import classe as classe
+
+Monster1 = classe.monster("Gloub","Dragon")
+Monster2 = classe.monster("Glouby","Gobelin")
