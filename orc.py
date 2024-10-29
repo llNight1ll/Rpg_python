@@ -110,8 +110,8 @@ text = """
 
 
 
-                                                  
-                                                                                                 
+
+
 """
 player = """                                                                                                                                                                                                     
                                                              =:::=                                  
@@ -268,7 +268,7 @@ def player_attack_animation():
 
   i = 1
 
-
+  clear_terminal()
   while i < 5 :
     # Nombre d'espaces pour décaler le dessin
 
