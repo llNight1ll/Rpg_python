@@ -58,13 +58,5 @@ def draw_hp_player(damage, color, max_hp, old_hp ):
     
     print( "    " , hp, "/", max_hp, end= "")
 
-    
-
-  
-
-
-   
-
-draw_hp_ennemy(40, "red", 100, 100)
 
 
