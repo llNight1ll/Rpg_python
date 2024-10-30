@@ -308,9 +308,3 @@ def player_attack_animation():
   draw_hp.draw_hp_ennemy(40, "red", 100, 100)
 
 
-
-
-
-
-
-ennemy_attack_animation()

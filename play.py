@@ -1,5 +1,7 @@
 import  map as map
 import classe as classe
+import spawner_enemy as spawner
+import arbre as arbre
 
 
 def game():
@@ -13,22 +15,33 @@ def game():
                 accept = True
                 if (classe.player.position_y  > 0) :
                     classe.player.position_y -= 1
-                print(valeur)
+                    print(valeur)
+                    spawner.spawn_ennemy()
+
+                
             elif valeur == "s":
                 accept = True
                 if (classe.player.position_y < 8) :
                     classe.player.position_y += 1
-                print(valeur)
+                    print(valeur)
+                    spawner.spawn_ennemy()
+
+
             elif valeur == "q":
                 accept = True
                 if (classe.player.position_x  > 0 ) :
                     classe.player.position_x -= 1
-                print(valeur)
+                    print(valeur)
+                    spawner.spawn_ennemy()
+
+
             elif valeur == "d":
                 accept = True
                 if (classe.player.position_x < 8) :
                     classe.player.position_x += 1
-                print(valeur)
+                    print(valeur)
+                    spawner.spawn_ennemy()
+
             elif valeur == "exit":
                 exit()
             else:
@@ -38,6 +51,6 @@ def game():
 
 def play():
     while True:
-        map.drawMap()
+        arbre.drawMap()
         print("Enter your move (z, s, q, d):")
         game() 

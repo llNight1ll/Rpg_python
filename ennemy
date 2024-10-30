@@ -2,3 +2,10 @@ import classe as classe
 
 Monster1 = classe.monster("Gloub","Dragon")
 Monster2 = classe.monster("Glouby","Gobelin")
+
+
+  move_cursor_up(13)
+            print_player()
+            move_cursor_up(13)
+            print_arbre(9-x)
+            print("")

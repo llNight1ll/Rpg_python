@@ -1,12 +1,10 @@
 class Entity :
-  def __init__(self, name, weapon, health, strength, defence, position_x ,position_y, lvl):
+  def __init__(self, name, weapon, health, strength, defence, lvl):
     self.name = name
     self.weapon = weapon
     self.health = health
     self.strength = strength
     self.defence = defence
-    self.position_x = position_x
-    self.position_y = position_y
     self.lvl = lvl
   
 
@@ -26,7 +24,9 @@ class Entity :
 class person(Entity) :
 
   def __init__(self,name, position_x, position_y):
-    super().__init__(name,"poing",10,10,10, position_x, position_y, 1)
+    self.position_x = position_x
+    self.position_y = position_y
+    super().__init__(name,"poing",10,10,10, 1)
     #self.inventory.append(health_potion("vie","health",1))
     self.inventory = []
 
@@ -46,12 +46,26 @@ player = person("Bob",5,0)
 
 
 class monster(Entity) :
-  def __init__(self,name, monster_type,position_x, position_y,lvl):
+  def __init__(self, monster_type, lvl):
 
     self.monster_type = monster_type
 
-    if monster_type == "orc":
-      super().__init__(name,"massue",100,10, position_x, position_y, lvl)
+
+    if monster_type == "Orc":
+      base_health = 20
+      base_strenght = 5
+      base_defence = 10
+      if lvl > 1 :
+        hp = base_health + round(lvl/(lvl-1) * base_health/4 + lvl)
+        strenght = base_strenght + round(lvl/(lvl-1) * base_strenght/4 + lvl)
+        defence = base_defence + round(lvl/(lvl-1) * base_defence/4 + lvl)
+      else :
+        hp = base_health
+        strenght = base_strenght
+        defence = base_defence
+
+
+      super().__init__(monster_type,"massue",hp,strenght,defence, lvl)
     else :
       super().__init__(name,5,10,1)
 
