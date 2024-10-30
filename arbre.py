@@ -23,20 +23,20 @@ arbre = r"""
 """
 
 player = r"""
-                   
-                   
-                   
-   @@@@@@@@@@@@@   
-   @@@@@@@@@@@@@   
-   @@@@@@@@@@@@@   
-   @@@@@@@@@@@@@   
-   @@@@@@@@@@@@@   
-   @@@@@@@@@@@@@   
-   @@@@@@@@@@@@@   
-                   
-                   
-                   
-                   
+                        
+                        
+                        
+      @@@@@@@@@@@@@     
+      @@@@@@@@@@@@@     
+      @@@@@@@@@@@@@     
+      @@@@@@@@@@@@@     
+      @@@@@@@@@@@@@     
+      @@@@@@@@@@@@@     
+      @@@@@@@@@@@@@     
+                        
+                        
+                        
+                        
 """
 
 # Afficher le motif avec des couleurs
@@ -53,12 +53,22 @@ def print_player():
         print(ligne_coloree+ "                     ")
 
 def print_arbre_player(number_of_tree):
+    ligne_player = player.splitlines()
+    ligne_arbre = arbre.splitlines()
+    
+    for ligne_p, ligne_a in zip(ligne_player, ligne_arbre):
+        ligne_coloree = ligne_a.replace("+", f"{VERT}+{RESET}").replace("*", f"{MARRON}*{RESET}")
+        for i in range(number_of_tree):
+            print(ligne_coloree + "                     ", end="")
         
-        for ligne in arbre.splitlines():
-            ligne_coloree = ligne.replace("+", f"{VERT}+{RESET}").replace("*", f"{MARRON}*{RESET}")
-            for i in range(number_of_tree):
-                print(ligne_coloree + "                     ", end="")
+        print(ligne_p + "                     ", end="")
+         
+        for j in range(9- number_of_tree - 1):
+            print(ligne_coloree + "                     ", end="")
+
+        
         print("")
+    
 def clear_console():
     # Pour Windows
     if os.name == 'nt':
@@ -80,9 +90,7 @@ def drawMap():
         if k != y :
             print_arbre(9)
         else :
-           print_arbre(9-(9-x))
-           move_cursor_up(13)
-           print_player()         
+           print_arbre_player(9-(9-x) -1)        
 
  
     print("position :" , str(x), str(y))
