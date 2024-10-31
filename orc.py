@@ -260,8 +260,6 @@ def ennemy_attack_animation():
   orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
   print(orc_centered)
 
-  draw_hp.draw_hp_ennemy(40, "red", 100, 100)
-  player_attack_animation()
 
 
 def player_attack_animation():
@@ -305,6 +303,15 @@ def player_attack_animation():
   orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
   print(orc_centered)
 
-  draw_hp.draw_hp_ennemy(40, "red", 100, 100)
 
+def neutre():
+    i = 0
 
+    # Nombre d'espaces pour décaler le dessin
+    indent = " " * (50* (5-i))
+
+    # Ajouter des espaces avant chaque ligne de l'orc
+    orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
+    print(orc_centered)
+    time.sleep(0.1)
+   

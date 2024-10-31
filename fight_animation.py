@@ -1,4 +1,3 @@
-import os
 import time
 import orc as orc
 
@@ -27,6 +26,7 @@ def print_fight():
             print(fight_centered)
             time.sleep(0.1)
             orc.clear_terminal()
-    orc.ennemy_attack_animation()
+                
+    orc.neutre()
 
 

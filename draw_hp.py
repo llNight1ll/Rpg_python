@@ -1,10 +1,10 @@
 import time
 import sys
 
-def draw_hp_ennemy(damage, color, max_hp, old_hp ):
-    hp = max_hp - damage
+def draw_hp_ennemy(enemy ):
+    hp = enemy.health
 
-    lenght_hp = round(damage/max_hp * 10)
+    lenght_hp = round( enemy.full_hp - (hp / enemy.full_hp * 10))
 
     for k in range(20):
         sys.stdout.write("\033[31m\u25A0\033[0m")
@@ -27,13 +27,12 @@ def draw_hp_ennemy(damage, color, max_hp, old_hp ):
         sys.stdout.write("\033[31m\u25A0\033[0m")
         sys.stdout.flush()
     
-    print( "    " , hp, "/", max_hp)
-    draw_hp_player(15, "green", 50, 45)
+    print( "    " , hp, "/", enemy.full_hp)
 
-def draw_hp_player(damage, color, max_hp, old_hp ):
-    hp = max_hp - damage
+def draw_hp_player(player):
+    hp = player.health
 
-    lenght_hp = round(damage/max_hp * 10)
+    lenght_hp = round( player.full_hp - (hp / player.full_hp * 10))
 
     for k in range(20):
         sys.stdout.write("\033[32m\u25A0\033[0m")
@@ -56,7 +55,7 @@ def draw_hp_player(damage, color, max_hp, old_hp ):
         sys.stdout.write("\033[32m\u25A0\033[0m")
         sys.stdout.flush()
     
-    print( "    " , hp, "/", max_hp, end= "")
+    print( "    " , hp, "/", player.full_hp, end= "")
 
 
 

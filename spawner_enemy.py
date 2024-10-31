@@ -1,6 +1,9 @@
 import classe as classe
 import os
-import fight_animation as fight
+import arbre as arbre
+import time
+import fight as fight
+import fight_animation as anime
 
 
 
@@ -20,7 +23,11 @@ def spawn_ennemy():
 
             enemy = classe.monster("Orc", random_lvl)
 
-            fight.print_fight()
+            found_enemy()
+
+            anime.print_fight()
+
+            fight.fight(enemy, classe.player)
 
 
         elif random_enemy >= 5 and random_enemy < 7 : 
@@ -29,7 +36,11 @@ def spawn_ennemy():
 
             enemy = classe.monster("Orc", random_lvl)
 
-            fight.print_fight()
+            found_enemy()
+
+            anime.print_fight()
+
+            fight.fight(enemy, classe.player)
 
 
         elif random_enemy >= 7 : 
@@ -38,7 +49,26 @@ def spawn_ennemy():
 
             enemy = classe.monster("Orc", random_lvl)
 
-            fight.print_fight()
+            found_enemy()
+
+            anime.print_fight()
+
+            fight.fight(enemy, classe.player)
 
 
         return enemy
+
+def found_enemy():
+    for i in range(4):
+        arbre.drawMap("z")
+        time.sleep(0.2)
+        clear_console()
+        time.sleep(0.2)
+
+def clear_console():
+    # Pour Windows
+    if os.name == 'nt':
+        os.system('cls')
+    # Pour Mac et Linux (os.name est 'posix')
+    else:
+        os.system('clear')
