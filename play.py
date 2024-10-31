@@ -3,6 +3,8 @@ import classe as classe
 import spawner_enemy as spawner
 import arbre as arbre
 
+side = "s"
+
 
 def game():
     accept = False
@@ -17,6 +19,7 @@ def game():
                     classe.player.position_y -= 1
                     print(valeur)
                     spawner.spawn_ennemy()
+                    return valeur
 
                 
             elif valeur == "s":
@@ -25,6 +28,7 @@ def game():
                     classe.player.position_y += 1
                     print(valeur)
                     spawner.spawn_ennemy()
+                    return valeur
 
 
             elif valeur == "q":
@@ -33,6 +37,7 @@ def game():
                     classe.player.position_x -= 1
                     print(valeur)
                     spawner.spawn_ennemy()
+                    return valeur
 
 
             elif valeur == "d":
@@ -41,6 +46,7 @@ def game():
                     classe.player.position_x += 1
                     print(valeur)
                     spawner.spawn_ennemy()
+                    return valeur
 
             elif valeur == "exit":
                 exit()
@@ -50,7 +56,13 @@ def game():
             print("Invalid choice. Please try again.")
 
 def play():
+    arbre.drawMap("s")
+    old_position = ("s")
     while True:
-        arbre.drawMap()
         print("Enter your move (z, s, q, d):")
-        game() 
+        side = game()
+        if (side != "s" and side != "q" and side != "d" and side != "z"):
+            arbre.drawMap(old_position)
+        else:
+            arbre.drawMap(side)
+            old_position = side

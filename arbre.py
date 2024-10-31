@@ -39,6 +39,75 @@ player = r"""
                         
 """
 
+
+
+player_side_right = r"""
+      @@@@@@@@%         
+   @@%#######%@@+       
+  @%###%%%%%%#%%@@      
+ @%%%%#####%%%%@@%%     
+@@%%%%%%%%%@@.:*-:      
+  @@%%%%%@@--..:::      
+   @@@@@@==::::::       
+     @@....@@@%         
+    @-........-@+       
+   @@-...@@..-+@+       
+   @@-...@@--:=@@       
+     @@%%%%@@@@         
+       @@@@@@           
+"""
+
+player_side_left = r"""
+       @@@@@@@@%    
+    @@%#######%@@+   
+   @@%%#%%%%%%%#%%@  
+ %%%@@%%%%#####%%%%@ 
+   :*-.@@%%%%%%%%%@  
+   :::..--@@%%%%%@@  
+    :::==@@@@@@@    
+     %@@....@@     
+   +@-........-@    
+   +@+-..@@...-@@    
+   @@=-..@@..-@@    
+      @@@@@%%%%@     
+       @@@@@@@
+
+"""
+
+player_side_front = r"""
+       @@@@@@:      
+     @@#%%%%#@@@@   
+   @@##%%%%%%##@@@* 
+@@%%%%%@@@%%%%%%%%@@
+@@%%%@@:::@@@%%%%%@@
+ =@@@::.....:%@@@@* 
+ =@-:..@....@:.::@* 
+   --..:....-:.--   
+ +@::::......::::@# 
+@%-::..::::::::::-#@
+  @@@::........@@@# 
+   @@%%%@@@@%%%@@   
+     @@@    @@@     
+"""
+
+player_side_back = r"""
+       @@@@@@:      
+   @@@@#%%%%#@@@@   
+ =@@@##%%%%%%##@@@* 
+@@%%%##########%%%@@
+@@%%%%%######%%%%%@@
+ =@%%%%%%%%%%%%%%@* 
+ =@@@%%%%%%%%%%@@@* 
+   @@%%%%%%%%%%@@   
+=+@::@@@@@@@@@@::@+ 
+@%-::........::::-#@
+ *@@@::........@@@# 
+   @@%%%@@@@%%%@@   
+     @@@    @@@     
+"""
+
+player = player_side_back
+
 # Afficher le motif avec des couleurs
 def print_arbre(number_of_tree):
     for ligne in arbre.splitlines():
@@ -52,8 +121,8 @@ def print_player():
         ligne_coloree = ligne.replace("@", f"{BLEU}+{RESET}")
         print(ligne_coloree+ "                     ")
 
-def print_arbre_player(number_of_tree):
-    ligne_player = player.splitlines()
+def print_arbre_player(number_of_tree,player_sprite):
+    ligne_player = player_sprite.splitlines()
     ligne_arbre = arbre.splitlines()
     
     for ligne_p, ligne_a in zip(ligne_player, ligne_arbre):
@@ -77,7 +146,7 @@ def clear_console():
     else:
         os.system('clear')
 
-def drawMap():
+def drawMap(side):
     clear_console()
     m = 9
     n = 9
@@ -86,11 +155,19 @@ def drawMap():
     y = classe.player.position_y
     l_map[y][x] = "●"
 
+    if side == "z":
+        player = player_side_back
+    elif side == "q":
+        player = player_side_left
+    elif side == "d":
+        player = player_side_right
+    elif side == "s":
+        player = player_side_front
     for k in range(9):
         if k != y :
             print_arbre(9)
         else :
-           print_arbre_player(9-(9-x) -1)        
+           print_arbre_player(9-(9-x) -1, pla)        
 
  
     print("position :" , str(x), str(y))
