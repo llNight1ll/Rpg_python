@@ -4,6 +4,7 @@ import arbre as arbre
 import time
 import fight as fight
 import fight_animation as anime
+import draw_hp as hp
 
 
 
@@ -27,6 +28,9 @@ def spawn_ennemy():
 
             anime.print_fight()
 
+            hp.draw_hp_ennemy(enemy)
+            hp.draw_hp_player(classe.player)
+
             fight.fight(enemy, classe.player)
 
 
@@ -40,6 +44,9 @@ def spawn_ennemy():
 
             anime.print_fight()
 
+            hp.draw_hp_ennemy(enemy)
+            hp.draw_hp_player(classe.player)
+
             fight.fight(enemy, classe.player)
 
 
@@ -52,6 +59,9 @@ def spawn_ennemy():
             found_enemy()
 
             anime.print_fight()
+
+            hp.draw_hp_ennemy(enemy)
+            hp.draw_hp_player(classe.player)
 
             fight.fight(enemy, classe.player)
 

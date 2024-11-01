@@ -31,7 +31,8 @@ class Entity :
 
 class person(Entity) :
 
-  def __init__(self,name, position_x, position_y):
+  def __init__(self,name, position_x, position_y, lvl):
+    self.lvl = lvl
     self.position_x = position_x
     self.position_y = position_y
     super().__init__(name,"poing",10,10,10, 1, 10)
@@ -52,7 +53,7 @@ class person(Entity) :
   def loose_hp(self,hp):
     super().loose_hp(hp)
 
-player = person("Bob",5,0)
+player = person("Bob",5,0,1)
 
 
 

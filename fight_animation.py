@@ -1,5 +1,6 @@
 import time
 import orc as orc
+import draw_hp as hp
 
 
 fight = r"""
@@ -28,5 +29,6 @@ def print_fight():
             orc.clear_terminal()
                 
     orc.neutre()
+
 
 

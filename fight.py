@@ -1,15 +1,22 @@
 import classe as classe
 import orc as anime
 import draw_hp as hp
+import time
+import game_over as end
+import fight_option as fight_option
 
 
 def fight(enemy, player):
+    time.sleep(5)
 
-    while enemy.health > 0:
+    while enemy.health > 0 and player.health > 0:
         accept = False
         while accept == False:
             try:
                 valeur = None
+
+                fight_option.print_option()
+                
                 valeur = str(input("Enter your choice: "))
 
                 if valeur == "1":
@@ -18,6 +25,8 @@ def fight(enemy, player):
                     anime.player_attack_animation()
                     hp.draw_hp_ennemy(enemy)
                     hp.draw_hp_player(player)
+                    time.sleep(1)
+
 
                     if enemy.health > 0:
 
@@ -35,3 +44,7 @@ def enemy_attack(enemy, player):
     player.loose_hp(enemy.strenght)
     hp.draw_hp_ennemy(enemy)
     hp.draw_hp_player(player)
+    time.sleep(1)
+    if player.health <= 0 :
+        end.game_over()
+        
