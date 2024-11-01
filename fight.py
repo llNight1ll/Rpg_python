@@ -4,6 +4,8 @@ import draw_hp as hp
 import time
 import game_over as end
 import fight_option as fight_option
+import run as run
+
 
 
 def fight(enemy, player):
@@ -32,7 +34,12 @@ def fight(enemy, player):
 
                         enemy_attack(enemy, player)
                     else:
-                        break
+                        return
+                if valeur == "4":
+                    escape = run.run(enemy,player)
+                    if escape == True :
+                        return
+
 
 
             except ValueError :
