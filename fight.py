@@ -9,7 +9,7 @@ import run as run
 
 
 def fight(enemy, player):
-    time.sleep(5)
+    time.sleep(1)
 
     while enemy.health > 0 and player.health > 0:
         accept = False
@@ -18,23 +18,43 @@ def fight(enemy, player):
                 valeur = None
 
                 fight_option.print_option()
+
                 
                 valeur = str(input("Enter your choice: "))
+                print(enemy.speed)
+
 
                 if valeur == "1":
                     accept = True
-                    enemy.loose_hp(10)
-                    anime.player_attack_animation()
-                    hp.draw_hp_ennemy(enemy)
-                    hp.draw_hp_player(player)
-                    time.sleep(1)
+                    if player.speed >= enemy.speed:
+
+                        enemy.loose_hp(player.strenght)
+                        anime.player_attack_animation()
+                        hp.draw_hp_ennemy(enemy)
+                        hp.draw_hp_player(player)
+                        time.sleep(1)
 
 
-                    if enemy.health > 0:
+                        if enemy.health > 0:
 
-                        enemy_attack(enemy, player)
-                    else:
-                        return
+                            enemy_attack(enemy, player)
+                        else:
+                            player.gain_xp(enemy.xp)
+                            return
+                    else :
+                        if enemy.health > 0:
+
+                            enemy_attack(enemy, player)
+
+                    
+                            enemy.loose_hp(player.strenght)
+                            anime.player_attack_animation()
+                            hp.draw_hp_ennemy(enemy)
+                            hp.draw_hp_player(player)
+                            time.sleep(1)
+                        else:
+                            player.gain_xp(enemy.xp)
+                            return
                 if valeur == "4":
                     escape = run.run(enemy,player)
                     if escape == True :

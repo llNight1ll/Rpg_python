@@ -1,7 +1,8 @@
 import  map as map
 import classe as classe
-import spawner_enemy as spawner
+import spawner_entity as spawner
 import arbre as arbre
+import print_inventory as inventory
 
 side = "s"
 
@@ -18,7 +19,8 @@ def game():
                 if (classe.player.position_y  > 0) :
                     classe.player.position_y -= 1
                     print(valeur)
-                    spawner.spawn_ennemy()
+                    spawner.spawn_entity(classe.player)
+                    spawner.spawn_entity()
                     return valeur
 
                 
@@ -27,7 +29,7 @@ def game():
                 if (classe.player.position_y < 8) :
                     classe.player.position_y += 1
                     print(valeur)
-                    spawner.spawn_ennemy()
+                    spawner.spawn_entity(classe.player)
                     return valeur
 
 
@@ -36,7 +38,7 @@ def game():
                 if (classe.player.position_x  > 0 ) :
                     classe.player.position_x -= 1
                     print(valeur)
-                    spawner.spawn_ennemy()
+                    spawner.spawn_entity(classe.player)
                     return valeur
 
 
@@ -45,11 +47,14 @@ def game():
                 if (classe.player.position_x < 8) :
                     classe.player.position_x += 1
                     print(valeur)
-                    spawner.spawn_ennemy()
+                    spawner.spawn_entity(classe.player)
                     return valeur
 
             elif valeur == "exit":
                 exit()
+            elif valeur == "i" or valeur == "inventory" :
+                inventory.print_inventory()
+                classe.player.show_inventory()
             else:
                 print("Invalid choice. Please try again.")
         except ValueError :

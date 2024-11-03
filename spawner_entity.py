@@ -5,20 +5,20 @@ import time
 import fight as fight
 import fight_animation as anime
 import draw_hp as hp
+import clear as clear
 
 
-
-def spawn_ennemy():
+def spawn_entity(player):
     enemy = None
 
     
-    enemy_presence = int.from_bytes(os.urandom(1), "big") % 10 + 1
+    entity_presence = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
-    if enemy_presence <= 2 :
+    if entity_presence <= 2 :
 
         random_enemy = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
-        if random_enemy < 5 : 
+        if random_enemy < 2 :
 
             random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
@@ -68,17 +68,45 @@ def spawn_ennemy():
 
         return enemy
 
+    elif entity_presence == 3 or entity_presence == 4 :
+
+        effect = ""
+
+        random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
+        random_effect = int.from_bytes(os.urandom(1), "big") % 4 + 1
+       
+        if random_lvl <= 4 :
+            random_lvl = 1
+        
+        elif random_lvl > 4 and random_lvl <= 7:
+            random_lvl = 2
+        
+        elif random_lvl > 7 and random_lvl <= 9 :
+            random_lvl = 3
+        
+        elif random_lvl == 10 :
+            random_lvl = 4
+        
+
+        if random_effect == 1 :
+            effect == "Health Potion"
+
+        elif random_effect == 2 :
+            effect == "Speed Potion"
+
+        elif random_effect == 3 :
+            effect == "Strenght Potion"
+
+        elif random_effect == 4 :
+            effect == "Defence Potion"
+
+        potion = classe.Potion(effect, random_lvl)
+
+
 def found_enemy():
     for i in range(4):
         arbre.drawMap("z")
         time.sleep(0.2)
-        clear_console()
+        clear.clear()
         time.sleep(0.2)
 
-def clear_console():
-    # Pour Windows
-    if os.name == 'nt':
-        os.system('cls')
-    # Pour Mac et Linux (os.name est 'posix')
-    else:
-        os.system('clear')

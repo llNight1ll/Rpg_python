@@ -1,6 +1,7 @@
 import os
 import time
 import draw_hp as draw_hp
+import clear as clear
 
 
 text = """
@@ -220,11 +221,7 @@ player = """
 """
 
 
-def clear_terminal():
-    # Pour Windows, utilise la commande 'cls'
-    # Pour Linux et macOS, utilise la commande 'clear'
-    if os.name == 'nt':  # Si le système est Windows
-        os.system('cls')
+
 
 
 
@@ -240,7 +237,7 @@ def ennemy_attack_animation():
     orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
     print(orc_centered)
     time.sleep(0.1)
-    clear_terminal()
+    clear.clear()
     i += 1
   i = 1
   while i < 5 :
@@ -251,7 +248,7 @@ def ennemy_attack_animation():
     orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
     print(orc_centered)
     time.sleep(0.1)
-    clear_terminal()
+    clear.clear()
     i += 1
       
   indent = " " * 250
@@ -266,7 +263,7 @@ def player_attack_animation():
 
   i = 1
 
-  clear_terminal()
+  clear.clear()
   while i < 5 :
     # Nombre d'espaces pour décaler le dessin
 
@@ -279,7 +276,7 @@ def player_attack_animation():
     orc_centered = "\n".join([indent + line1  + indent2 + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
     print(orc_centered)
     time.sleep(0.1)
-    clear_terminal()
+    clear.clear()
     i += 1
 
   while i < 5 :
@@ -292,7 +289,7 @@ def player_attack_animation():
     orc_centered = "\n".join([ indent + line1  + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
     print(orc_centered)
     time.sleep(0.1)
-    clear_terminal()
+    clear.clear()
     i += 1
   i = 1
  

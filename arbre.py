@@ -1,5 +1,5 @@
-import os
 import classe as classe
+import clear as clear
 
 VERT = "\033[92m"
 MARRON = "\033[33m"
@@ -137,16 +137,10 @@ def print_arbre_player(number_of_tree,player_sprite):
         
         print("")
     
-def clear_console():
-    # Pour Windows
-    if os.name == 'nt':
-        os.system('cls')
-    # Pour Mac et Linux (os.name est 'posix')
-    else:
-        os.system('clear')
+
 
 def drawMap(side):
-    clear_console()
+    clear.clear()
     m = 9
     n = 9
     l_map = [[" " for _ in range(m)] for _ in range(n)]
