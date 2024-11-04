@@ -71,30 +71,30 @@ class person(Entity) :
  
 
   def add_object(self,object):
-      is_in_inventory = False
 
-      for id, object in self.inventory.items():
+      for id, object_in_inventory in self.inventory.items():
+        
+        if  object_in_inventory.name == object.name and object_in_inventory.lvl == object.lvl :
+            object_in_inventory.quantity += 1
+            return
 
-        if object in self.inventory:
-            self.inventory[id].quantity += object.quantity
-            is_in_inventory = True
-
-      if is_in_inventory == False :
-          self.inventory[len(self.inventory) + 1] = object
+      self.inventory[len(self.inventory) + 1] = object
 
   def delet_object(self, id):
       
       if id in self.inventory:
-          if  self.inventory[id].quantity == 0 :
-            print("You dont have this object")
-          else:
             self.inventory[id].quantity -= 1
-            self.inventory[id].effect(self)
+            self.inventory[id].effect(player)
+            if  self.inventory[id].quantity == 0 :
+              del self.inventory[id]
+              
+      else:
+        print("No object with this ID has been found")
 
     
   def show_inventory(self):
       for id, object in self.inventory.items():
-          print(f"ID {id} : {object}")
+          print(f"{id} - : {object}")
 
   def loose_hp(self,hp):
     super().loose_hp(hp)
@@ -148,7 +148,6 @@ class Potion :
       
   def __init__(self, name, lvl):
     self.name = name
-    self.effect = ""
     self.lvl = lvl
     self.quantity = 1
 
@@ -158,29 +157,36 @@ class Potion :
 
     if self.name == "Strenght Potion" :
 
-      self.effect = self.strength_effect
+      self.effect = self.strenght_effect
     
-    if self.name == " Speed Potion" :
+    if self.name == "Speed Potion" :
 
       self.effect = self.speed_effect
 
     if self.name == "Defence Potion" :
       self.effect = self.defence_effect
+    
+
 
 
   def heal_effect(self, player):
 
+    if player.health == player.full_hp :
+      self.quantity += 1
+      return
+
     heal =  round(player.full_hp * 0.2) * self.lvl
+
 
     player.health += heal
     if player.health > player.full_hp :
       player.health = player.full_hp
 
-  def strength_effect(self, player):
+  def strenght_effect(self, player):
 
     strenght =  round(player.strenght * 0.2)  * self.lvl
 
-    player.strength += strenght
+    player.strenght += strenght
 
   def speed_effect(self, player):
   
@@ -195,5 +201,3 @@ class Potion :
     player.defence += defence
 
 
-potion1 = Potion("Heal Potion", 3)
-player.add_object(potion1)

@@ -1,23 +1,18 @@
 
 
 def inventory(player):
-    accept = False
-    while accept == False:
+    while True:
         try:
             value = None
 
 
-                
-            value = int(input("Enter y: "))
-            print("caca", value)
+            value = int(input("Enter your choice: "))
 
 
             if value == "exit" or value == 0:
-                accept = True
                 break
             else :
 
-                accept = True
                 player.delet_object(value)
                 
 

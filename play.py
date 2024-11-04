@@ -54,6 +54,7 @@ def game():
             elif valeur == "i" or valeur == "inventory" :
                 valeur = True
                 inventory.print_inventory()
+                print("To exit the inventory enter 0")  
                 classe.player.show_inventory()
                 inv_panel.inventory(classe.player)
                 return valeur

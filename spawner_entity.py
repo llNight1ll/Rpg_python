@@ -6,6 +6,7 @@ import fight as fight
 import fight_animation as anime
 import draw_hp as hp
 import clear as clear
+import find_potion as find_potion
 
 
 def spawn_entity(player):
@@ -14,7 +15,7 @@ def spawn_entity(player):
     
     entity_presence = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
-    if entity_presence <= 2 :
+    if entity_presence <= 0 :
 
         random_enemy = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
@@ -89,18 +90,23 @@ def spawn_entity(player):
         
 
         if random_effect == 1 :
-            effect == "Health Potion"
+            effect = "Heal Potion"
 
         elif random_effect == 2 :
-            effect == "Speed Potion"
+            effect = "Speed Potion"
 
         elif random_effect == 3 :
-            effect == "Strenght Potion"
+            effect = "Strenght Potion"
 
         elif random_effect == 4 :
-            effect == "Defence Potion"
+            effect = "Defence Potion"
 
         potion = classe.Potion(effect, random_lvl)
+        player.add_object(potion)
+        print(potion)
+        find_potion.find_potion_message()
+
+
 
 
 def found_enemy():
