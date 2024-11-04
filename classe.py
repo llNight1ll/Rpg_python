@@ -68,56 +68,39 @@ class person(Entity) :
   def level_up(self):
     super().level_up()
 
-  def use_inventory (self, id):
-    for item in self.inventory:
-      print(item)
-    choice = int(input())
-    self.inventory[choice].use(self)
-    self.inventory.pop(choice)
+ 
 
+  def add_object(self,object):
+      is_in_inventory = False
 
+      for id, object in self.inventory.items():
 
-  def add_object(self,name, quantity, lvl):
+        if object in self.inventory:
+            self.inventory[id].quantity += object.quantity
+            is_in_inventory = True
 
-    object_name = (name, lvl)
+      if is_in_inventory == False :
+          self.inventory[len(self.inventory) + 1] = object
 
-    if object_name in self.inventory:
-        self.inventory[object_name] += quantity
-    else:
-        self.inventory[object_name] = quantity
+  def delet_object(self, id):
+      
+      if id in self.inventory:
+          if  self.inventory[id].quantity == 0 :
+            print("You dont have this object")
+          else:
+            self.inventory[id].quantity -= 1
+            self.inventory[id].effect(self)
 
-  def delet_object(self, name, quantity, lvl):
-    object_name = (name, lvl)
-    if object_name in self.inventory:
-        self.inventory[object_name] -= quantity
-        if self.inventory[object_name] <= 0:
-            del self.nventory[object_name]
-    else:
-        print("This object isn't in the inventory")
-
+    
   def show_inventory(self):
-    for (name, lvl), quantity in self.inventory.items():
-        print(f"{name} (Lvl {lvl}) - Quantity: {quantity}")
-
-
-
-
-
-
-
-
-
-
-
+      for id, object in self.inventory.items():
+          print(f"ID {id} : {object}")
 
   def loose_hp(self,hp):
     super().loose_hp(hp)
 
 player = person("Bob",5,0)
-player.add_object("Heal Potion", 3, 1)
-player.add_object("Heal Potion", 2, 2)
-player.add_object("Strenght Potion", 1, 1)
-player.delet_object("Speed Potion", 1, 1)
+
 
 
 
@@ -160,11 +143,14 @@ class monster(Entity) :
     super().loose_hp(hp)
 
 class Potion :
+  def __str__(self):
+        return f"{self.name} (Level {self.lvl}) - Quantity: {self.quantity}"
       
   def __init__(self, name, lvl):
     self.name = name
     self.effect = ""
     self.lvl = lvl
+    self.quantity = 1
 
     if self.name == "Heal Potion" :
 
@@ -209,3 +195,5 @@ class Potion :
     player.defence += defence
 
 
+potion1 = Potion("Heal Potion", 3)
+player.add_object(potion1)

@@ -3,7 +3,7 @@ import classe as classe
 import spawner_entity as spawner
 import arbre as arbre
 import print_inventory as inventory
-
+import inventory_panel as inv_panel
 side = "s"
 
 
@@ -20,7 +20,6 @@ def game():
                     classe.player.position_y -= 1
                     print(valeur)
                     spawner.spawn_entity(classe.player)
-                    spawner.spawn_entity()
                     return valeur
 
                 
@@ -53,8 +52,11 @@ def game():
             elif valeur == "exit":
                 exit()
             elif valeur == "i" or valeur == "inventory" :
+                valeur = True
                 inventory.print_inventory()
                 classe.player.show_inventory()
+                inv_panel.inventory(classe.player)
+                return valeur
             else:
                 print("Invalid choice. Please try again.")
         except ValueError :
