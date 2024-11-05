@@ -15,7 +15,7 @@ def spawn_entity(player):
     
     entity_presence = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
-    if entity_presence <= 0 :
+    if entity_presence <= 2 :
 
         random_enemy = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
@@ -69,7 +69,7 @@ def spawn_entity(player):
 
         return enemy
 
-    elif entity_presence == 3 or entity_presence == 4 :
+    elif entity_presence == 3 :
 
         effect = ""
 

@@ -5,6 +5,9 @@ import time
 import game_over as end
 import fight_option as fight_option
 import run as run
+import inventory_panel as inv_panel
+import print_inventory as inventory
+
 
 
 
@@ -52,9 +55,19 @@ def fight(enemy, player):
                             hp.draw_hp_ennemy(enemy)
                             hp.draw_hp_player(player)
                             time.sleep(1)
+
                         else:
                             player.gain_xp(enemy.xp)
                             return
+                if valeur ==  "3":
+                    inventory.print_inventory()
+                    print("To exit the inventory enter 0")  
+                    classe.player.show_inventory()
+                    inv_panel.inventory(classe.player)
+                    anime.neutre()
+                    hp.draw_hp_ennemy(enemy)
+                    hp.draw_hp_player(player)
+
                 if valeur == "4":
                     escape = run.run(enemy,player)
                     if escape == True :

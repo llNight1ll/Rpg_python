@@ -4,6 +4,7 @@ import spawner_entity as spawner
 import arbre as arbre
 import print_inventory as inventory
 import inventory_panel as inv_panel
+import save as save
 side = "s"
 
 
@@ -58,6 +59,9 @@ def game():
                 classe.player.show_inventory()
                 inv_panel.inventory(classe.player)
                 return valeur
+            elif valeur == "save":
+                save.save(classe.player)
+            
             else:
                 print("Invalid choice. Please try again.")
         except ValueError :

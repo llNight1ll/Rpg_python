@@ -1,5 +1,6 @@
 import create_game as create_game
-
+import save as save
+import classe as classe
 def start():
     print("Main Menu :")
     print("1 - Create New Game")
@@ -20,7 +21,8 @@ def start():
             elif valeur == 2:
                 accept = True
                 print(valeur)
-                load_game()
+                save.load_game(classe.player)
+                create_game.create_game()
 
             elif valeur == 3:
                 accept = True
