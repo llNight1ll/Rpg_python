@@ -19,7 +19,10 @@ def save(player):
         "xp_to_next_lvl": player.xp_to_next_lvl,
         "lvl": player.lvl,
         "weapon": player.weapon,
-        "inventory": player.inventory
+        "inventory": player.inventory,
+        "armory": player.armory,
+        "money": player.money,
+        "equiped_weapon": player.equiped_weapon
 
     }
     try :
@@ -52,6 +55,9 @@ def load_game(player, save_file="save.dat"):
             player.lvl = data["lvl"]
             player.weapon = data["weapon"]
             player.inventory = data["inventory"]
+            player.armory = data["armory"]
+            player.money = data["money"]
+            player.equiped_weapon = data["equiped_weapon"]
 
             print("Game loaded successfully.")
             

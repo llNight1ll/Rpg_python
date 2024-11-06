@@ -52,13 +52,32 @@ def game():
 
             elif valeur == "exit":
                 exit()
+            
             elif valeur == "i" or valeur == "inventory" :
                 valeur = True
                 inventory.print_inventory()
                 print("To exit the inventory enter 0")  
-                classe.player.show_inventory()
+                classe.player.show_inventory("")
                 inv_panel.inventory(classe.player)
                 return valeur
+            
+            elif valeur == "a" or valeur == "armory" :
+                valeur = True
+                inventory.print_armory()
+                print("To exit the armory enter 0")  
+                classe.player.show_inventory("weapon")
+                inv_panel.inventory(classe.player, "weapon")
+                return valeur
+            
+            elif valeur == "shop" :
+                valeur = True
+                inventory.print_shop()
+                print("To exit the armory enter 0")
+                classe.player.show_inventory("shop")
+                inv_panel.inventory(classe.player, "shop")
+
+
+            
             elif valeur == "save":
                 save.save(classe.player)
             

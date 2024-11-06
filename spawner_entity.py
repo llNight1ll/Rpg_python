@@ -102,7 +102,7 @@ def spawn_entity(player):
             effect = "Defence Potion"
 
         potion = classe.Potion(effect, random_lvl)
-        player.add_object(potion)
+        player.add_object(potion,"")
         print(potion)
         find_potion.find_potion_message()
 

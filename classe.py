@@ -28,8 +28,7 @@ class Entity :
     self.speed += round((2 * int(self.base_speed) * int(self.lvl) )/100 + int(self.lvl) + 10)
     self.xp_to_next_lvl = round(1.5 * int(self.xp_to_next_lvl))
 
-  def attack(self):
-    pass
+
     
   def loose_hp(self, hp):
     self.health -= hp
@@ -48,6 +47,11 @@ class person(Entity) :
     self.current_xp = 0
     self.xp_to_next_lvl =  5
     self.inventory = {}
+    self.armory = {}
+    self.shop = {}
+    self.money = 0
+    self.equiped_weapon = None
+    
 
     super().__init__(name,"poing",10,10,10, 1, 10,10,10,10,10,10)
     #self.inventory.append(health_potion("vie","health",1))
@@ -63,14 +67,16 @@ class person(Entity) :
         print("current xp ", self.current_xp)
         print("xp needeed", self.xp_to_next_lvl)
       
-    
+  def gain_money(self, money):
+    self.money += money
  
   def level_up(self):
     super().level_up()
 
  
 
-  def add_object(self,object):
+  def add_object(self,object, type):
+    if type != "weapon" and type != "shop":
 
       for id, object_in_inventory in self.inventory.items():
         
@@ -79,9 +85,30 @@ class person(Entity) :
             return
 
       self.inventory[len(self.inventory) + 1] = object
+    
+    elif type == "weapon" :
 
-  def delet_object(self, id):
-      
+      for id, object_in_inventory in self.armory.items():
+        
+        if  object_in_inventory.name == object.name and object_in_inventory.lvl == object.lvl :
+            object_in_inventory.quantity += 1
+            return
+
+      self.armory[len(self.armory) + 1] = object
+
+    elif type == "shop" :
+      for id, object_in_inventory in self.shop.items():
+        
+        if  object_in_inventory.name == object.name and object_in_inventory.lvl == object.lvl :
+            object_in_inventory.quantity += 1
+            return
+
+      self.shop[len(self.shop) + 1] = object
+
+
+
+  def delet_object(self, id, type):
+    if type != "weapon" and type != "shop":  
       if id in self.inventory:
             self.inventory[id].quantity -= 1
             self.inventory[id].effect(player)
@@ -90,11 +117,52 @@ class person(Entity) :
               
       else:
         print("No object with this ID has been found")
+    elif type == "weapon" :      
+      if id in self.armory:
+          self.equiped_weapon = self.armory[id]
+          print(self.equiped_weapon)
+              
+      else:
+        print("No object with this ID has been found")
+    
+    elif type == "shop" :
+      if id in self.shop:
+
+        if  isinstance(self.shop[id], Potion):
+          if self.money >= self.shop[id].price:    
+            self.add_object(self.shop[id], "")
+            self.money -= self.shop[id]
+          else : 
+            print("You dont have enought money to buy this")
+
+        elif  isinstance(self.shop[id], Weapon):
+          if self.money >= self.shop[id].price:    
+            self.add_object(self.shop[id], "weapon")
+            self.money -= self.shop[id]
+          else : 
+            print("You dont have enought money to buy this")
+        
+        print("You have now ", self.money, " coins")
+        
+
+              
+      else:
+        print("No object with this ID has been found")
+
 
     
-  def show_inventory(self):
+  def show_inventory(self, type):
+    if type != "weapon":
+      print("Coins : ", self.money)
       for id, object in self.inventory.items():
           print(f"{id} - : {object}")
+    elif type == "weapon" :
+      for id, object in self.armory.items():
+          print(f"{id} - : {object}")
+    elif type == "shop":
+        for id, object in self.shop.items():
+          print(f"{id} - : {object} - Price: {object.price} Coins")
+
 
   def loose_hp(self,hp):
     super().loose_hp(hp)
@@ -119,6 +187,7 @@ class monster(Entity) :
       base_defence = 5
       base_speed = 3
       self.xp = 5
+      self.money = 30
 
       if lvl > 1 :
         full_hp = base_health + round(lvl/(lvl-1) * base_health/4 + lvl)
@@ -127,6 +196,7 @@ class monster(Entity) :
         speed = base_speed + round(lvl/(lvl-1) * base_speed/4 + lvl)
         health = full_hp
         self.xp = 5 * lvl
+        self.money = 30 * lvl
         super().__init__(monster_type,"massue",health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
 
       else :
@@ -154,17 +224,24 @@ class Potion :
     if self.name == "Heal Potion" :
 
       self.effect = self.heal_effect
+      self.price = 200 * lvl
 
     if self.name == "Strenght Potion" :
 
       self.effect = self.strenght_effect
+      self.price = 150 * lvl
+
     
     if self.name == "Speed Potion" :
 
       self.effect = self.speed_effect
+      self.price = 150 * lvl
+
 
     if self.name == "Defence Potion" :
       self.effect = self.defence_effect
+      self.price = 150 * lvl
+
     
 
 
@@ -199,5 +276,42 @@ class Potion :
     defence =  round(player.defence * 0.2)  * self.lvl
 
     player.defence += defence
+
+
+class Weapon :
+  def __str__(self):
+        return f"{self.name} (Level {self.lvl}) - Health: {self.health} - Damage: {self.damage}"
+  
+  
+  def __init__(self, name, lvl, player):
+    self.name = name
+    self.lvl = lvl
+    self.quantity = 1
+    self.health = 0
+    self.damage = 0
+    
+    if name == "Cut" :
+      self.damage = 15 * lvl + player.strenght
+      self.health = 50
+      self.price = 1500 * lvl
+
+
+    elif name == "Blade" :
+      self.damage =  25 * lvl + player.strenght
+      self.health = 40
+      self.price = 5000 * lvl
+
+
+    elif name == "Railgun" :
+      self.damage =  50 * lvl + player.strenght
+      self.health = 10
+      self.price = 50000 * lvl
+
+
+
+
+blade = Weapon("Blade", 2, player)
+player.add_object(blade, "weapon")
+player.add_object(blade, "shop")
 
 

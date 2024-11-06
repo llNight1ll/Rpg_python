@@ -1,6 +1,6 @@
 
 
-def inventory(player):
+def inventory(player, type = ""):
     while True:
         try:
             value = None
@@ -12,8 +12,8 @@ def inventory(player):
             if value == "exit" or value == 0:
                 break
             else :
-
-                player.delet_object(value)
+                print(type)
+                player.delet_object(value,type)
                 
 
 

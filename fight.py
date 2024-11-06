@@ -31,7 +31,7 @@ def fight(enemy, player):
                     accept = True
                     if player.speed >= enemy.speed:
 
-                        enemy.loose_hp(player.strenght)
+                        enemy.loose_hp(round(player.strenght * player.equiped_weapon.damage / (enemy.defence / 2)))
                         anime.player_attack_animation()
                         hp.draw_hp_ennemy(enemy)
                         hp.draw_hp_player(player)
@@ -50,7 +50,7 @@ def fight(enemy, player):
                             enemy_attack(enemy, player)
 
                     
-                            enemy.loose_hp(player.strenght)
+                            enemy.loose_hp(round(player.strenght * player.equiped_weapon.damage / (enemy.defence / 2)))
                             anime.player_attack_animation()
                             hp.draw_hp_ennemy(enemy)
                             hp.draw_hp_player(player)
@@ -59,10 +59,16 @@ def fight(enemy, player):
                         else:
                             player.gain_xp(enemy.xp)
                             return
+                if valeur =="2" :
+                    inventory.print_armory()
+                    print("To exit the armory enter 0")  
+                    classe.player.show_inventory("weapon")
+                    inv_panel.inventory(classe.player,"weapon")
+
                 if valeur ==  "3":
                     inventory.print_inventory()
                     print("To exit the inventory enter 0")  
-                    classe.player.show_inventory()
+                    classe.player.show_inventory("")
                     inv_panel.inventory(classe.player)
                     anime.neutre()
                     hp.draw_hp_ennemy(enemy)
@@ -81,7 +87,7 @@ def fight(enemy, player):
 
 def enemy_attack(enemy, player):
     anime.ennemy_attack_animation()
-    player.loose_hp(enemy.strenght)
+    player.loose_hp(round(enemy.strenght / (player.defence /2)))
     hp.draw_hp_ennemy(enemy)
     hp.draw_hp_player(player)
     time.sleep(1)
