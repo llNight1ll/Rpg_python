@@ -1,3 +1,157 @@
+
+
+class Potion :
+  def __str__(self):
+        return f"{self.name} (Level {self.lvl}) - Quantity: {self.quantity}"
+      
+  def __init__(self, name, lvl):
+    self.name = name
+    self.lvl = lvl
+    self.quantity = 1
+
+    if self.name == "Heal Potion" :
+
+      self.effect = self.heal_effect
+      self.price = 200 * lvl
+
+    if self.name == "Strenght Potion" :
+
+      self.effect = self.strenght_effect
+      self.price = 150 * lvl
+
+    
+    if self.name == "Speed Potion" :
+
+      self.effect = self.speed_effect
+      self.price = 150 * lvl
+
+
+    if self.name == "Defence Potion" :
+      self.effect = self.defence_effect
+      self.price = 150 * lvl
+
+    
+
+
+
+  def heal_effect(self, player):
+
+    if player.health == player.full_hp :
+      self.quantity += 1
+      return
+
+    heal =  round(player.full_hp * 0.2) * self.lvl
+
+
+    player.health += heal
+    if player.health > player.full_hp :
+      player.health = player.full_hp
+
+  def strenght_effect(self, player):
+
+    strenght =  round(player.strenght * 0.2)  * self.lvl
+
+    player.strenght += strenght
+
+  def speed_effect(self, player):
+  
+    speed =  round(player.speed * 0.2)  * self.lvl
+
+    player.speed += speed
+
+  def defence_effect(self, player):
+  
+    defence =  round(player.defence * 0.2)  * self.lvl
+
+    player.defence += defence
+
+
+heal_potion = Potion("Heal Potion", 1)
+heal_potion_lvl_2 = Potion("Heal Potion", 2)
+heal_potion_lvl_3 = Potion("Heal Potion", 3)
+heal_potion_lvl_4 = Potion("Heal Potion", 4)
+
+strenght_potion = Potion("Strenght Potion", 1)
+strenght_potion_lvl_2 = Potion("Strenght Potion", 2)
+strenght_potion_lvl_3 = Potion("Strenght Potion", 3)
+strenght_potion_lvl_4 = Potion("Strenght Potion", 4)
+
+defence_potion = Potion("Defence Potion", 1)
+defence_potion_lvl_2 = Potion("Defence Potion", 2)
+defence_potion_lvl_3 = Potion("Defence Potion", 3)
+defence_potion_lvl_4 = Potion("Defence Potion", 4)
+
+speed_potion = Potion("Speed Potion", 1)
+speed_potion_lvl_2 = Potion("Speed Potion", 2)
+speed_potion_lvl_3 = Potion("Speed Potion", 3)
+speed_potion_lvl_4 = Potion("Speed Potion", 4)
+
+
+
+class Weapon :
+  def __str__(self):
+        if self.health >= 0 :
+          return f"{self.name} (Level {self.lvl}) - Health: {self.health} - Additional damage: {self.damage}"
+        else :          
+          return f"{self.name} (Level {self.lvl}) - Additional damage: {self.damage}"
+      
+  
+  
+  def __init__(self, name, lvl):
+    self.name = name
+    self.lvl = lvl
+    self.quantity = 1
+    self.health = 0
+    self.damage = 0
+
+    if name == "Fist" :
+      self.health = -1
+    
+    if name == "Cut" :
+      self.damage = 15 * lvl 
+      self.health = 50
+      self.price = 1500 * lvl
+
+
+    elif name == "Blade" :
+      self.damage =  25 * lvl 
+      self.health = 40
+      self.price = 5000 * lvl
+
+
+    elif name == "Railgun" :
+      self.damage =  50 * lvl 
+      self.health = 10
+      self.price = 50000 * lvl
+
+
+
+fist = Weapon("Fist", 1)
+
+blade = Weapon("Blade", 1)
+blade_lvl_2 = Weapon("Blade", 2)
+blade_lvl_3 = Weapon("Blade", 3)
+blade_lvl_4 = Weapon("Blade", 4)
+
+cut = Weapon("Cut", 1)
+cut_lvl_2 = Weapon("Cut", 2)
+cut_lvl_3 = Weapon("Cut", 3)
+cut_lvl_4 = Weapon("Cut", 4)
+
+railgun = Weapon("Railgun", 1)
+railgun_lvl_2 = Weapon("Railgun", 2)
+railgun_lvl_3 = Weapon("Railgun", 3)
+railgun_lvl_4 = Weapon("Railgun", 4)
+
+
+
+
+
+
+
+
+
+
 class Entity :
   def __init__(self, name, weapon, health, strenght, defence, lvl, full_hp, speed, base_strenght, base_defence, base_full_hp, base_speed):
     self.name = name
@@ -49,12 +203,10 @@ class person(Entity) :
     self.inventory = {}
     self.armory = {}
     self.shop = {}
-    self.money = 0
-    self.equiped_weapon = None
-    
+    self.money = 1000000
+    self.equiped_weapon = fist    
 
-    super().__init__(name,"poing",10,10,10, 1, 10,10,10,10,10,10)
-    #self.inventory.append(health_potion("vie","health",1))
+    super().__init__(name,fist,10,5,3, 1, 10,4,5,3,10,4)
   
   def gain_xp(self, xp):
     self.current_xp += xp
@@ -131,18 +283,21 @@ class person(Entity) :
         if  isinstance(self.shop[id], Potion):
           if self.money >= self.shop[id].price:    
             self.add_object(self.shop[id], "")
-            self.money -= self.shop[id]
+            self.money -= self.shop[id].price
+            print("You have now ", self.money, " coins")
+
           else : 
             print("You dont have enought money to buy this")
 
         elif  isinstance(self.shop[id], Weapon):
           if self.money >= self.shop[id].price:    
             self.add_object(self.shop[id], "weapon")
-            self.money -= self.shop[id]
+            self.money -= self.shop[id].price
+            print("You have now ", self.money, " coins")
+
           else : 
             print("You dont have enought money to buy this")
         
-        print("You have now ", self.money, " coins")
         
 
               
@@ -152,22 +307,26 @@ class person(Entity) :
 
     
   def show_inventory(self, type):
-    if type != "weapon":
+    if type != "weapon" and type != "shop":
       print("Coins : ", self.money)
       for id, object in self.inventory.items():
           print(f"{id} - : {object}")
     elif type == "weapon" :
       for id, object in self.armory.items():
-          print(f"{id} - : {object}")
+          if object == self.equiped_weapon:
+            print(f"{id} - : {object} Equiped")
+          else:
+            print(f"{id} - : {object}")
+
     elif type == "shop":
         for id, object in self.shop.items():
           print(f"{id} - : {object} - Price: {object.price} Coins")
+          print("")
 
 
   def loose_hp(self,hp):
     super().loose_hp(hp)
 
-player = person("Bob",5,0)
 
 
 
@@ -197,7 +356,7 @@ class monster(Entity) :
         health = full_hp
         self.xp = 5 * lvl
         self.money = 30 * lvl
-        super().__init__(monster_type,"massue",health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
+        super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
 
       else :
         speed = base_speed
@@ -205,113 +364,66 @@ class monster(Entity) :
         strenght = base_strenght
         defence = base_defence
         health = full_hp
-        super().__init__(monster_type,"massue",health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
+        super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
 
 
 
   def loose_hp(self,hp):
     super().loose_hp(hp)
 
-class Potion :
-  def __str__(self):
-        return f"{self.name} (Level {self.lvl}) - Quantity: {self.quantity}"
-      
-  def __init__(self, name, lvl):
-    self.name = name
-    self.lvl = lvl
-    self.quantity = 1
 
-    if self.name == "Heal Potion" :
+player = person("Bob",5,0)
 
-      self.effect = self.heal_effect
-      self.price = 200 * lvl
-
-    if self.name == "Strenght Potion" :
-
-      self.effect = self.strenght_effect
-      self.price = 150 * lvl
-
-    
-    if self.name == "Speed Potion" :
-
-      self.effect = self.speed_effect
-      self.price = 150 * lvl
-
-
-    if self.name == "Defence Potion" :
-      self.effect = self.defence_effect
-      self.price = 150 * lvl
-
-    
-
-
-
-  def heal_effect(self, player):
-
-    if player.health == player.full_hp :
-      self.quantity += 1
-      return
-
-    heal =  round(player.full_hp * 0.2) * self.lvl
-
-
-    player.health += heal
-    if player.health > player.full_hp :
-      player.health = player.full_hp
-
-  def strenght_effect(self, player):
-
-    strenght =  round(player.strenght * 0.2)  * self.lvl
-
-    player.strenght += strenght
-
-  def speed_effect(self, player):
-  
-    speed =  round(player.speed * 0.2)  * self.lvl
-
-    player.speed += speed
-
-  def defence_effect(self, player):
-  
-    defence =  round(player.defence * 0.2)  * self.lvl
-
-    player.defence += defence
-
-
-class Weapon :
-  def __str__(self):
-        return f"{self.name} (Level {self.lvl}) - Health: {self.health} - Damage: {self.damage}"
-  
-  
-  def __init__(self, name, lvl, player):
-    self.name = name
-    self.lvl = lvl
-    self.quantity = 1
-    self.health = 0
-    self.damage = 0
-    
-    if name == "Cut" :
-      self.damage = 15 * lvl + player.strenght
-      self.health = 50
-      self.price = 1500 * lvl
-
-
-    elif name == "Blade" :
-      self.damage =  25 * lvl + player.strenght
-      self.health = 40
-      self.price = 5000 * lvl
-
-
-    elif name == "Railgun" :
-      self.damage =  50 * lvl + player.strenght
-      self.health = 10
-      self.price = 50000 * lvl
-
-
-
-
-blade = Weapon("Blade", 2, player)
+player.add_object(fist, "weapon")
 player.add_object(blade, "weapon")
+
 player.add_object(blade, "shop")
+player.add_object(blade_lvl_2, "shop")
+player.add_object(blade_lvl_3, "shop")
+player.add_object(blade_lvl_4, "shop")
+
+player.add_object(cut, "shop")
+player.add_object(cut_lvl_2, "shop")
+player.add_object(cut_lvl_3, "shop")
+player.add_object(cut_lvl_4, "shop")
+
+player.add_object(railgun, "shop")
+player.add_object(railgun_lvl_2, "shop")
+player.add_object(railgun_lvl_3, "shop")
+player.add_object(railgun_lvl_4, "shop")
+
+
+player.add_object(heal_potion, "shop")
+player.add_object(heal_potion_lvl_2, "shop")
+player.add_object(heal_potion_lvl_3, "shop")
+player.add_object(heal_potion_lvl_4, "shop")
+
+player.add_object(strenght_potion, "shop")
+player.add_object(strenght_potion_lvl_2, "shop")
+player.add_object(strenght_potion_lvl_3, "shop")
+player.add_object(strenght_potion_lvl_4, "shop")
+
+player.add_object(defence_potion, "shop")
+player.add_object(defence_potion_lvl_2, "shop")
+player.add_object(defence_potion_lvl_3, "shop")
+player.add_object(defence_potion_lvl_4, "shop")
+
+player.add_object(speed_potion, "shop")
+player.add_object(speed_potion_lvl_2, "shop")
+player.add_object(speed_potion_lvl_3, "shop")
+player.add_object(speed_potion_lvl_4, "shop")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -30,8 +30,16 @@ def fight(enemy, player):
                 if valeur == "1":
                     accept = True
                     if player.speed >= enemy.speed:
+                            
+                        for id, object in player.armory.items():
+                            if object == player.equiped_weapon:
+                                object.health -=1
+                                if  object.health == 0 :
+                                    player.equiped_weapon = player.armory[1]
+                                    del player.armory[id]
+                                    break
 
-                        enemy.loose_hp(round(player.strenght * player.equiped_weapon.damage / (enemy.defence / 2)))
+                        enemy.loose_hp(round(player.strenght + player.equiped_weapon.damage / (enemy.defence / 2)))
                         anime.player_attack_animation()
                         hp.draw_hp_ennemy(enemy)
                         hp.draw_hp_player(player)
@@ -50,7 +58,15 @@ def fight(enemy, player):
                             enemy_attack(enemy, player)
 
                     
-                            enemy.loose_hp(round(player.strenght * player.equiped_weapon.damage / (enemy.defence / 2)))
+                            for id, object in player.armory.items():
+                                if object == player.equiped_weapon:
+                                    object.health -=1
+                                    if  object.health == 0 :
+                                        player.equiped_weapon = player.armory[1]
+                                        del player.armory[id]
+                                        break
+
+                            enemy.loose_hp(round(player.strenght + player.equiped_weapon.damage / (enemy.defence / 2)))
                             anime.player_attack_animation()
                             hp.draw_hp_ennemy(enemy)
                             hp.draw_hp_player(player)
@@ -87,7 +103,7 @@ def fight(enemy, player):
 
 def enemy_attack(enemy, player):
     anime.ennemy_attack_animation()
-    player.loose_hp(round(enemy.strenght / (player.defence /2)))
+    player.loose_hp(round(enemy.strenght / (player.defence)))
     hp.draw_hp_ennemy(enemy)
     hp.draw_hp_player(player)
     time.sleep(1)

@@ -72,7 +72,7 @@ def game():
             elif valeur == "shop" :
                 valeur = True
                 inventory.print_shop()
-                print("To exit the armory enter 0")
+                print("To exit the shop enter 0")
                 classe.player.show_inventory("shop")
                 inv_panel.inventory(classe.player, "shop")
 
