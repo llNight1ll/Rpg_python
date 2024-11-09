@@ -7,7 +7,7 @@ import fight_option as fight_option
 import run as run
 import inventory_panel as inv_panel
 import print_inventory as inventory
-
+import sentence as sentence
 
 
 
@@ -23,7 +23,7 @@ def fight(enemy, player):
                 fight_option.print_option()
 
                 
-                valeur = str(input("Enter your choice: "))
+                valeur = str(input(sentence.enter_your_choice))
                 print(enemy.speed)
 
 
@@ -77,13 +77,13 @@ def fight(enemy, player):
                             return
                 if valeur =="2" :
                     inventory.print_armory()
-                    print("To exit the armory enter 0")  
+                    print(sentence.exit_armory)  
                     classe.player.show_inventory("weapon")
                     inv_panel.inventory(classe.player,"weapon")
 
                 if valeur ==  "3":
                     inventory.print_inventory()
-                    print("To exit the inventory enter 0")  
+                    print()  
                     classe.player.show_inventory("")
                     inv_panel.inventory(classe.player)
                     anime.neutre()
@@ -98,7 +98,7 @@ def fight(enemy, player):
 
 
             except ValueError :
-                print("Invalid choice. Please try again.")
+                print(sentence.invalid_choice)
 
 
 def enemy_attack(enemy, player):

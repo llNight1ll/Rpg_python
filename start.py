@@ -1,17 +1,18 @@
 import create_game as create_game
 import save as save
 import classe as classe
+import sentence as sentence
 def start():
-    print("Main Menu :")
-    print("1 - Create New Game")
-    print("2 - Load Saved Game")
-    print("3 - About")
-    print("4 - Exit")
+    print(sentence.main_menu)
+    print(sentence.create_new_game)
+    print(sentence.load_saved_game)
+    print(sentence.about)
+    print(sentence.exit)
     accept = False
     while accept == False:
         try:
             valeur = None
-            valeur = int(input("Enter your choice: "))
+            valeur = int(input(sentence.enter_your_choice))
 
             if valeur == 1:
                 accept = True
@@ -34,11 +35,11 @@ def start():
                 print(valeur)
                 exit()
             else:
-                print("Invalid choice. Please try again.")
+                print(sentence.invalid_choice)
 
         except ValueError :
 
-            print("Invalid choice. Please try again.")
+            print(sentence.invalid_choice)
 
 
 def about():
