@@ -23,50 +23,37 @@ def spawn_entity(player):
 
             random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
-            enemy = classe.monster("Orc", random_lvl)
-
-            found_enemy()
-
-            anime.print_fight()
-
-            hp.draw_hp_ennemy(enemy)
-            hp.draw_hp_player(classe.player)
-
-            fight.fight(enemy, classe.player)
+            enemy = classe.monster("Boss", random_lvl)
 
 
-        elif random_enemy >= 5 and random_enemy < 7 : 
+    
+
+        elif random_enemy > 2 and random_enemy < 5 : 
 
             random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
             enemy = classe.monster("Orc", random_lvl)
 
-            found_enemy()
-
-            anime.print_fight()
-
-            hp.draw_hp_ennemy(enemy)
-            hp.draw_hp_player(classe.player)
-
-            fight.fight(enemy, classe.player)
 
 
-        elif random_enemy >= 7 : 
+
+        elif random_enemy >= 5 : 
 
             random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
-            enemy = classe.monster("Orc", random_lvl)
-
-            found_enemy()
-
-            anime.print_fight()
-
-            hp.draw_hp_ennemy(enemy)
-            hp.draw_hp_player(classe.player)
-
-            fight.fight(enemy, classe.player)
+            enemy = classe.monster("Gobelin", random_lvl)
 
 
+      
+        found_enemy()
+
+        anime.print_fight(enemy)
+
+        hp.draw_hp_ennemy(enemy)
+        hp.draw_hp_player(classe.player)
+
+        fight.fight(enemy, classe.player)
+        
         return enemy
 
     elif entity_presence == 3 :

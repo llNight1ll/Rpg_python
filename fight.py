@@ -8,6 +8,7 @@ import run as run
 import inventory_panel as inv_panel
 import print_inventory as inventory
 import sentence as sentence
+import clear as clear
 
 
 
@@ -22,7 +23,6 @@ def fight(enemy, player):
 
                 fight_option.print_option()
 
-                
                 valeur = str(input(sentence.enter_your_choice))
                 print(enemy.speed)
 
@@ -40,7 +40,7 @@ def fight(enemy, player):
                                     break
 
                         enemy.loose_hp(round(player.strenght + player.equiped_weapon.damage / (enemy.defence / 2)))
-                        anime.player_attack_animation()
+                        anime.player_attack_animation(enemy)
                         hp.draw_hp_ennemy(enemy)
                         hp.draw_hp_player(player)
                         time.sleep(1)
@@ -67,7 +67,7 @@ def fight(enemy, player):
                                         break
 
                             enemy.loose_hp(round(player.strenght + player.equiped_weapon.damage / (enemy.defence / 2)))
-                            anime.player_attack_animation()
+                            anime.player_attack_animation(enemy)
                             hp.draw_hp_ennemy(enemy)
                             hp.draw_hp_player(player)
                             time.sleep(1)
@@ -79,21 +79,30 @@ def fight(enemy, player):
                     inventory.print_armory()
                     print(sentence.exit_armory)  
                     classe.player.show_inventory("weapon")
-                    inv_panel.inventory(classe.player,"weapon")
+                    has_used = inv_panel.inventory(classe.player,"weapon")
+                    clear.clear()
+                    if has_used == True:
+                        enemy_attack(enemy, player)
 
                 if valeur ==  "3":
                     inventory.print_inventory()
                     print()  
-                    classe.player.show_inventory("")
-                    inv_panel.inventory(classe.player)
-                    anime.neutre()
+                    classe.player.show_inventory("")     
+                    has_used = inv_panel.inventory(classe.player)
+                    clear.clear()
+                    anime.neutre(enemy)
                     hp.draw_hp_ennemy(enemy)
                     hp.draw_hp_player(player)
+                    
+                    if has_used == True:
+                        enemy_attack(enemy, player)
 
                 if valeur == "4":
                     escape = run.run(enemy,player)
                     if escape == True :
                         return
+                    else :
+                        enemy_attack(enemy, player)
 
 
 
@@ -102,7 +111,7 @@ def fight(enemy, player):
 
 
 def enemy_attack(enemy, player):
-    anime.ennemy_attack_animation()
+    anime.enemy_attack_animation(enemy)
     player.loose_hp(round(enemy.strenght / (player.defence)))
     hp.draw_hp_ennemy(enemy)
     hp.draw_hp_player(player)

@@ -1,4 +1,4 @@
-
+import sentence as sentence
 
 def inventory(player, type = ""):
     while True:
@@ -6,16 +6,16 @@ def inventory(player, type = ""):
             value = None
 
 
-            value = int(input("Enter your choice: "))
+            value = int(input(sentence.enter_your_choice))
 
 
             if value == "exit" or value == 0:
                 break
             else :
-                print(type)
-                player.delet_object(value,type)
+                hase_used = player.delet_object(value,type)
+                return hase_used
                 
 
 
         except ValueError :
-            print("Invalid choice. Please try again.")
+            print(sentence.invalid_choice)

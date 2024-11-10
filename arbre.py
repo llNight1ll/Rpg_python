@@ -162,7 +162,7 @@ def drawMap(side):
         else :
            print_arbre_player(9-(9-x) -1, player)        
 
- 
+    
     print("position :" , str(x), str(y))
 
 

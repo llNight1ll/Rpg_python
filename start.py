@@ -2,6 +2,7 @@ import create_game as create_game
 import save as save
 import classe as classe
 import sentence as sentence
+import clear as clear
 def start():
     print(sentence.main_menu)
     print(sentence.create_new_game)
@@ -17,6 +18,9 @@ def start():
             if valeur == 1:
                 accept = True
                 print(valeur)
+                clear.clear()
+                name = str(input(sentence.enter_your_name))
+                classe.player.name = name
                 create_game.create_game()
 
             elif valeur == 2:

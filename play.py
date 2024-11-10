@@ -91,7 +91,6 @@ def play():
     arbre.drawMap("s")
     old_position = ("s")
     while True:
-        print(sentence.enter_your_choice)
         side = game()
         if (side != "s" and side != "q" and side != "d" and side != "z"):
             arbre.drawMap(old_position)

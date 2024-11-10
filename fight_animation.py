@@ -14,7 +14,7 @@ fight = r"""
                                         
 """
 
-def print_fight():
+def print_fight(enemy):
 
     indent = " " * 250
 
@@ -28,7 +28,7 @@ def print_fight():
             time.sleep(0.1)
             orc.clear.clear()
                 
-    orc.neutre()
+    orc.neutre(enemy)
 
 
 

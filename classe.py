@@ -260,12 +260,15 @@ class person(Entity) :
 
 
   def delet_object(self, id, type):
+    has_used_item = False
     if type != "weapon" and type != "shop":  
       if id in self.inventory:
             self.inventory[id].quantity -= 1
             self.inventory[id].effect(player)
             if  self.inventory[id].quantity == 0 :
               del self.inventory[id]
+              has_used_item = True
+              return has_used_item
               
       else:
         print("No object with this ID has been found")
@@ -273,6 +276,8 @@ class person(Entity) :
       if id in self.armory:
           self.equiped_weapon = self.armory[id]
           print(self.equiped_weapon)
+          has_used_item = True
+          return has_used_item
               
       else:
         print("No object with this ID has been found")
@@ -339,14 +344,14 @@ class monster(Entity) :
 
 
 
-    if monster_type == "Orc":
+    if monster_type == "Gobelin":
       base_full_hp = 20
       base_health = base_full_hp
       base_strenght = 2
-      base_defence = 5
-      base_speed = 3
+      base_defence = 3
+      base_speed = 5
       self.xp = 5
-      self.money = 30
+      self.money = 100
 
       if lvl > 1 :
         full_hp = base_health + round(lvl/(lvl-1) * base_health/4 + lvl)
@@ -365,6 +370,58 @@ class monster(Entity) :
         defence = base_defence
         health = full_hp
         super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
+
+
+
+    elif monster_type == "Orc":
+      base_full_hp = 30
+      base_health = base_full_hp
+      base_strenght = 6
+      base_defence = 7
+      base_speed = 2
+      self.xp = 10
+      self.money = 300
+
+      if lvl > 1 :
+        full_hp = base_health + round(lvl/(lvl-1) * base_health/4 + lvl)
+        strenght = base_strenght + round(lvl/(lvl-1) * base_strenght/4 + lvl)
+        defence = base_defence + round(lvl/(lvl-1) * base_defence/4 + lvl)
+        speed = base_speed + round(lvl/(lvl-1) * base_speed/4 + lvl)
+        health = full_hp
+        self.xp = 10 * lvl
+        self.money = 30 * lvl
+        super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
+
+      else :
+        speed = base_speed
+        full_hp = base_health
+        strenght = base_strenght
+        defence = base_defence
+        health = full_hp
+        super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
+
+        
+  
+    elif monster_type == "Boss":
+
+      base_full_hp = 2000
+      base_health = base_full_hp
+      base_strenght = 500
+      base_defence = 500
+      base_speed = 500
+      self.xp = 10000000
+      self.money = 3000000
+
+
+      speed = base_speed
+      full_hp = base_health
+      strenght = base_strenght
+      defence = base_defence
+      health = full_hp
+      super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
+
+        
+    
 
 
 
