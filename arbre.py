@@ -1,6 +1,6 @@
 import classe as classe
 import clear as clear
-
+import print_hp_ascii as ascii
 VERT = "\033[92m"
 MARRON = "\033[33m"
 RESET = "\033[0m"
@@ -163,7 +163,8 @@ def drawMap(side):
            print_arbre_player(9-(9-x) -1, player)        
 
     
-    print("position :" , str(x), str(y))
+    position = "positionbb " + str(x) + " : " + str(y)
+    ascii.print_ascii_number(position, "player")
 
 
 def move_cursor_up(x):

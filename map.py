@@ -1,5 +1,6 @@
 import classe as classe
 import os
+import print_hp_ascii as ascii
 
 def clear_console():
     # Pour Windows
@@ -33,6 +34,9 @@ def drawMap():
                 print("|🌲" + str(l_map[k][j]) + "🌲", end="" )
             else :
                 print(str(l_map[k][j]) + "🌲", end="")
- 
-    print("position :" , str(x), str(y))
+
+
+    position = "position " + str(x) + " : " + str(y)
+    ascii.print_ascii_number(position, "player")
+    print("caccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaccccccccccccccccccccaaaaaaaaaaaaaaaca")
 
