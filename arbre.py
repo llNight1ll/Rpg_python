@@ -163,8 +163,8 @@ def drawMap(side):
            print_arbre_player(9-(9-x) -1, player)        
 
     
-    position = "positionbb " + str(x) + " : " + str(y)
-    ascii.print_ascii_number(position, "player")
+    position = "position " + str(x) + " : " + str(y)
+    ascii.print_ascii_text(position, "other")
 
 
 def move_cursor_up(x):

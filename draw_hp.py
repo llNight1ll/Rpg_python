@@ -39,8 +39,8 @@ def draw_hp_ennemy(enemy ):
     print("")
     hp_string = str(hp) + "/" + str(enemy.full_hp)
     lvl_string = "lvl " + str(enemy.lvl)
-    ascii.print_ascii_number(hp_string, "")
-    ascii.print_ascii_number(lvl_string, "")
+    ascii.print_ascii_text(hp_string, "")
+    ascii.print_ascii_text(lvl_string, "")
 
        
     
@@ -80,8 +80,8 @@ def draw_hp_player(player):
     print("")
     hp_string = str(hp) + "/" + str(player.full_hp)
     lvl_string = "lvl " + str(player.lvl)
-    ascii.print_ascii_number(hp_string, "player")
-    ascii.print_ascii_number(lvl_string, "player")
+    ascii.print_ascii_text(hp_string, "player")
+    ascii.print_ascii_text(lvl_string, "player")
 
 
 

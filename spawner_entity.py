@@ -19,7 +19,7 @@ def spawn_entity(player):
 
         random_enemy = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
-        if random_enemy < 2 :
+        if random_enemy <= 2 :
 
             random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
 

@@ -37,6 +37,5 @@ def drawMap():
 
 
     position = "position " + str(x) + " : " + str(y)
-    ascii.print_ascii_number(position, "player")
-    print("caccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaccccccccccccccccccccaaaaaaaaaaaaaaaca")
+    ascii.print_ascii_text(position, "player")
 

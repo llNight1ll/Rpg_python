@@ -1,4 +1,4 @@
-
+import print_hp_ascii as ascii
 
 class Potion :
   def __str__(self):
@@ -215,9 +215,9 @@ class person(Entity) :
       while self.current_xp >= self.xp_to_next_lvl:
         self.current_xp -= self.xp_to_next_lvl
         self.level_up()
-        print(self.lvl, "lvl")
-        print("current xp ", self.current_xp)
-        print("xp needeed", self.xp_to_next_lvl)
+        ascii.print_ascii_text(str(self.lvl) + "lvl", "other")
+        ascii.print_ascii_text("current xp " + str(self.current_xp), "other")
+        ascii.print_ascii_text("xp needeed" + str(self.xp_to_next_lvl), "other")
       
   def gain_money(self, money):
     self.money += money
@@ -271,16 +271,16 @@ class person(Entity) :
               return has_used_item
               
       else:
-        print("No object with this ID has been found")
+        ascii.print_ascii_text("No object with this ID has been found", "other")
     elif type == "weapon" :      
       if id in self.armory:
           self.equiped_weapon = self.armory[id]
-          print(self.equiped_weapon)
+          ascii.print_ascii_text(self.equiped_weapon, "other")
           has_used_item = True
           return has_used_item
               
       else:
-        print("No object with this ID has been found")
+        ascii.print_ascii_text("No object with this ID has been found", "other")
     
     elif type == "shop" :
       if id in self.shop:
@@ -289,43 +289,43 @@ class person(Entity) :
           if self.money >= self.shop[id].price:    
             self.add_object(self.shop[id], "")
             self.money -= self.shop[id].price
-            print("You have now ", self.money, " coins")
+            ascii.print_ascii_text("You have now " + str(self.money) + " coins", "other")
 
           else : 
-            print("You dont have enought money to buy this")
+            ascii.print_ascii_text("You dont have enought money to buy this", "other")
 
         elif  isinstance(self.shop[id], Weapon):
           if self.money >= self.shop[id].price:    
             self.add_object(self.shop[id], "weapon")
             self.money -= self.shop[id].price
-            print("You have now ", self.money, " coins")
+            ascii.print_ascii_text("You have now " + str(self.money) + " coins", "other")
 
           else : 
-            print("You dont have enought money to buy this")
+            ascii.print_ascii_text("You dont have enought money to buy this", "other")
         
         
 
               
       else:
-        print("No object with this ID has been found")
+        ascii.print_ascii_text("No object with this ID has been found", "other")
 
 
     
   def show_inventory(self, type):
     if type != "weapon" and type != "shop":
-      print("Coins : ", self.money)
+      ascii.print_ascii_text("Coins : " +  str(self.money), "other")
       for id, object in self.inventory.items():
-          print(f"{id} - : {object}")
+          ascii.print_ascii_text(f"{id} - : {object}","other")
     elif type == "weapon" :
       for id, object in self.armory.items():
           if object == self.equiped_weapon:
-            print(f"{id} - : {object} Equiped")
+            ascii.print_ascii_text(f"{id} - : {object} Equiped", "other")
           else:
-            print(f"{id} - : {object}")
+            ascii.print_ascii_text(f"{id} - : {object}", "other")
 
     elif type == "shop":
         for id, object in self.shop.items():
-          print(f"{id} - : {object} - Price: {object.price} Coins")
+          ascii.print_ascii_text(f"{id} - : {object} - Price: {object.price} Coins", "other")
           print("")
 
 

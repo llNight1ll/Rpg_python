@@ -1,4 +1,4 @@
-ascii_digits = {
+ascii_runes = {
     '0': [
         "_______   ",
         "\\   _  \\  ",
@@ -370,22 +370,27 @@ ascii_digits = {
 }
 
 
-def print_ascii_number(number,type):
+def print_ascii_text(text,type):
+
     if type == "player":
-        number_str = str(number)
+        text = str(text).lower()
         indent = " " * 50
         rows = [indent]* 6
+    elif type == "other":
+        text = str(text).lower()
+        indent = " "
+        rows = [indent]* 6
     else:
-        number_str = str(number)
+        text = str(text).lower()
         indent = " " * 400
         rows = [indent]* 6
 
 
 
-    for digit in number_str:
-        digit_ascii = ascii_digits.get(digit)
+    for rune in text:
+        character  = ascii_runes.get(rune)
         for i in range(6):
-            rows[i] += digit_ascii[i] + " "
+            rows[i] += character [i] + " "
 
     for row in rows:
         print(row)

@@ -1,4 +1,7 @@
 import sentence as sentence
+import clear as clear
+import arbre as arbre
+import print_hp_ascii as ascii
 
 def inventory(player, type = ""):
     while True:
@@ -10,12 +13,19 @@ def inventory(player, type = ""):
 
 
             if value == "exit" or value == 0:
+                clear.clear()
+                arbre.drawMap("s")
                 break
             else :
-                hase_used = player.delet_object(value,type)
-                return hase_used
-                
+                if type != "shop":
+                    hase_used = player.delet_object(value,type)
+                    return hase_used
+                else :
+
+                    player.delet_object(value,type)
+
 
 
         except ValueError :
-            print(sentence.invalid_choice)
+            print("")
+            ascii.print_ascii_text("no object with this id has been found")

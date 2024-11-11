@@ -6,6 +6,7 @@ import print_inventory as inventory
 import inventory_panel as inv_panel
 import save as save
 import sentence as sentence
+import clear as clear
 side = "s"
 
 
@@ -56,6 +57,7 @@ def game():
             
             elif valeur == "i" or valeur == "inventory" :
                 valeur = True
+                clear.clear()
                 inventory.print_inventory()
                 print(sentence.exit_inventory)  
                 classe.player.show_inventory("")
@@ -64,6 +66,7 @@ def game():
             
             elif valeur == "a" or valeur == "armory" :
                 valeur = True
+                clear.clear()
                 inventory.print_armory()
                 print(sentence.exit_armory)  
                 classe.player.show_inventory("weapon")
@@ -72,6 +75,7 @@ def game():
             
             elif valeur == "shop" :
                 valeur = True
+                clear.clear()
                 inventory.print_shop()
                 print(sentence.exit_shop)
                 classe.player.show_inventory("shop")
