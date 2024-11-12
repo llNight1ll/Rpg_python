@@ -1,13 +1,25 @@
 import print_hp_ascii as ascii
 
-class Potion :
+from abc import ABC, abstractmethod
+
+class Object(ABC):
+    def __init__(self):
+        pass
+
+    @abstractmethod
+    def effect(self):
+        pass
+
+class potion(Object) :
   def __str__(self):
         return f"{self.name} (Level {self.lvl}) - Quantity: {self.quantity}"
       
   def __init__(self, name, lvl):
+    super().__init__()
     self.name = name
     self.lvl = lvl
     self.quantity = 1
+    
 
     if self.name == "Heal Potion" :
 
@@ -31,7 +43,8 @@ class Potion :
       self.price = 150 * lvl
 
     
-
+  def effect(self):
+    self.effect()
 
 
   def heal_effect(self, player):
@@ -66,27 +79,44 @@ class Potion :
     player.defence += defence
 
 
-heal_potion = Potion("Heal Potion", 1)
-heal_potion_lvl_2 = Potion("Heal Potion", 2)
-heal_potion_lvl_3 = Potion("Heal Potion", 3)
-heal_potion_lvl_4 = Potion("Heal Potion", 4)
+heal_potion = potion("Heal Potion", 1)
+heal_potion_lvl_2 = potion("Heal Potion", 2)
+heal_potion_lvl_3 = potion("Heal Potion", 3)
+heal_potion_lvl_4 = potion("Heal Potion", 4)
 
-strenght_potion = Potion("Strenght Potion", 1)
-strenght_potion_lvl_2 = Potion("Strenght Potion", 2)
-strenght_potion_lvl_3 = Potion("Strenght Potion", 3)
-strenght_potion_lvl_4 = Potion("Strenght Potion", 4)
+strenght_potion = potion("Strenght Potion", 1)
+strenght_potion_lvl_2 = potion("Strenght Potion", 2)
+strenght_potion_lvl_3 = potion("Strenght Potion", 3)
+strenght_potion_lvl_4 = potion("Strenght Potion", 4)
 
-defence_potion = Potion("Defence Potion", 1)
-defence_potion_lvl_2 = Potion("Defence Potion", 2)
-defence_potion_lvl_3 = Potion("Defence Potion", 3)
-defence_potion_lvl_4 = Potion("Defence Potion", 4)
+defence_potion = potion("Defence Potion", 1)
+defence_potion_lvl_2 = potion("Defence Potion", 2)
+defence_potion_lvl_3 = potion("Defence Potion", 3)
+defence_potion_lvl_4 = potion("Defence Potion", 4)
 
-speed_potion = Potion("Speed Potion", 1)
-speed_potion_lvl_2 = Potion("Speed Potion", 2)
-speed_potion_lvl_3 = Potion("Speed Potion", 3)
-speed_potion_lvl_4 = Potion("Speed Potion", 4)
+speed_potion = potion("Speed Potion", 1)
+speed_potion_lvl_2 = potion("Speed Potion", 2)
+speed_potion_lvl_3 = potion("Speed Potion", 3)
+speed_potion_lvl_4 = potion("Speed Potion", 4)
 
 
+class Stone :
+  def __str__(self):
+    return f"{self.name}"
+    
+
+  
+  def __init__(self, name):
+    self.name = name
+    self.price = 3000
+    self.quantity = 1
+    self.lvl = 1
+
+
+  
+
+
+boss_stone = Stone("Boss Stone")
 
 class Weapon :
   def __str__(self):
@@ -147,11 +177,6 @@ railgun_lvl_4 = Weapon("Railgun", 4)
 
 
 
-
-
-
-
-
 class Entity :
   def __init__(self, name, weapon, health, strenght, defence, lvl, full_hp, speed, base_strenght, base_defence, base_full_hp, base_speed):
     self.name = name
@@ -203,7 +228,7 @@ class person(Entity) :
     self.inventory = {}
     self.armory = {}
     self.shop = {}
-    self.money = 1000000
+    self.money = 0
     self.equiped_weapon = fist    
 
     super().__init__(name,fist,10,5,3, 1, 10,4,5,3,10,4)
@@ -262,13 +287,15 @@ class person(Entity) :
   def delet_object(self, id, type):
     has_used_item = False
     if type != "weapon" and type != "shop":  
-      if id in self.inventory:
+      if id in self.inventory and self.inventory[id].name != "Boss Stone" :
             self.inventory[id].quantity -= 1
             self.inventory[id].effect(player)
             if  self.inventory[id].quantity == 0 :
               del self.inventory[id]
               has_used_item = True
               return has_used_item
+      elif id in self.inventory and self.inventory[id].name == "Boss Stone" :
+          return "Boss Stone"
               
       else:
         ascii.print_ascii_text("No object with this ID has been found", "other")
@@ -285,7 +312,7 @@ class person(Entity) :
     elif type == "shop" :
       if id in self.shop:
 
-        if  isinstance(self.shop[id], Potion):
+        if  isinstance(self.shop[id], potion) or isinstance(self.shop[id], Stone):
           if self.money >= self.shop[id].price:    
             self.add_object(self.shop[id], "")
             self.money -= self.shop[id].price
@@ -419,6 +446,8 @@ class monster(Entity) :
       defence = base_defence
       health = full_hp
       super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
+          
+
 
         
     
@@ -430,6 +459,9 @@ class monster(Entity) :
 
 
 player = person("Bob",5,0)
+
+
+boss = monster("Boss",1)
 
 player.add_object(fist, "weapon")
 player.add_object(blade, "weapon")
@@ -469,6 +501,8 @@ player.add_object(speed_potion, "shop")
 player.add_object(speed_potion_lvl_2, "shop")
 player.add_object(speed_potion_lvl_3, "shop")
 player.add_object(speed_potion_lvl_4, "shop")
+
+player.add_object(boss_stone, "shop")
 
 
 

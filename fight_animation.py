@@ -1,7 +1,6 @@
 import time
-import orc as orc
-import draw_hp as hp
-import clear as clear
+import orc
+import clear
 
 fight = r"""
   ______  _____  _____  _    _  _______ 
@@ -22,11 +21,11 @@ def print_fight(enemy):
 
     for i in range(20) :
         if (i + 1) % 2 == 0:
-            orc.clear.clear()
+            clear.clear()
         else :
             print(fight_centered)
             time.sleep(0.1)
-            orc.clear.clear()
+            clear.clear()
                 
     orc.neutre(enemy)
 

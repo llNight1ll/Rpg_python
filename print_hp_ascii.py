@@ -1,3 +1,4 @@
+import time
 ascii_runes = {
     '0': [
         "_______   ",
@@ -118,6 +119,24 @@ ascii_runes = {
         "",
         ""
     ],
+    '.': [
+        "    ",
+        "    ",
+        "    ",
+        " /\ ",
+        " \/ ",
+        "    "
+    ],
+
+    ',': [
+        "    ",
+        "    ",
+        "    ",
+        " /\ ",
+        " )/ ",
+        "    "
+    ],
+    
     '(': [
     "    ___ ",
     "   /  / ",
@@ -135,6 +154,7 @@ ascii_runes = {
     "         ",
     "         ",
 ],
+
 
 ')': [
     " ___    ",
@@ -370,7 +390,7 @@ ascii_runes = {
 }
 
 
-def print_ascii_text(text,type):
+def print_ascii_text(text,type, delay = 0.0):
 
     if type == "player":
         text = str(text).lower()
@@ -394,3 +414,4 @@ def print_ascii_text(text,type):
 
     for row in rows:
         print(row)
+        time.sleep(delay)

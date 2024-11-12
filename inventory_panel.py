@@ -1,6 +1,6 @@
-import sentence as sentence
-import clear as clear
-import arbre as arbre
+import sentence
+import clear
+import arbre
 import print_hp_ascii as ascii
 
 def inventory(player, type = ""):
@@ -28,4 +28,4 @@ def inventory(player, type = ""):
 
         except ValueError :
             print("")
-            ascii.print_ascii_text("no object with this id has been found")
+            ascii.print_ascii_text("no object with this id has been found", "other")

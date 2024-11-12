@@ -1,3 +1,3 @@
-import arbre as arbre
+import arbre
 
 arbre.print_arbre()

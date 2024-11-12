@@ -1,6 +1,3 @@
-import clear as clear
-
-
 import keyboard
 
 

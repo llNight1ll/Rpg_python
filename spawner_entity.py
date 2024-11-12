@@ -1,17 +1,35 @@
-import classe as classe
+import classe
 import os
-import arbre as arbre
+import arbre
 import time
-import fight as fight
+import fight
 import fight_animation as anime
 import draw_hp as hp
-import clear as clear
-import find_potion as find_potion
+import find_potion
+import print_hp_ascii as ascii
+import sys
+import clear
 
-
-def spawn_entity(player):
+def spawn_entity(player, is_boss = False):
     enemy = None
+    if is_boss == True :
+        enemy = classe.boss
+        found_enemy()
 
+        anime.print_fight(enemy)
+
+        hp.draw_hp_ennemy(enemy)
+        hp.draw_hp_player(classe.player)
+
+        has_win = fight.fight(enemy, classe.player)
+
+        if has_win == True :
+            clear.clear()
+            ascii.print_ascii_text("Congrats, You escaped the forest", "other")
+            sys.exit(1)
+            
+        
+        return enemy
     
     entity_presence = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
@@ -19,27 +37,18 @@ def spawn_entity(player):
 
         random_enemy = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
-        if random_enemy <= 2 :
+        if random_enemy <= 5 : 
 
-            random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
-
-            enemy = classe.monster("Boss", random_lvl)
-
-
-    
-
-        elif random_enemy > 2 and random_enemy < 5 : 
-
-            random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
+            random_lvl = int.from_bytes(os.urandom(1), "big") % (player.position_y + 3) + 1
 
             enemy = classe.monster("Orc", random_lvl)
 
 
 
 
-        elif random_enemy >= 5 : 
+        elif random_enemy > 5 : 
 
-            random_lvl = int.from_bytes(os.urandom(1), "big") % 10 + 1
+            random_lvl = int.from_bytes(os.urandom(1), "big") % ( player.position_y + 3) + 1
 
             enemy = classe.monster("Gobelin", random_lvl)
 
@@ -88,7 +97,7 @@ def spawn_entity(player):
         elif random_effect == 4 :
             effect = "Defence Potion"
 
-        potion = classe.Potion(effect, random_lvl)
+        potion = classe.potion(effect, random_lvl)
         player.add_object(potion,"")
         print(potion)
         find_potion.find_potion_message()

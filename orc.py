@@ -1,7 +1,5 @@
-import os
 import time
-import draw_hp as draw_hp
-import clear as clear
+import clear
 
 
 text = r"""

@@ -1,6 +1,5 @@
 import sys
-import orc as orc
-import clear as clear
+import clear
 
 die = r"""
 

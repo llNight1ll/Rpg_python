@@ -1,4 +1,4 @@
-import  play as play
+import  play
 
 
 def create_game():

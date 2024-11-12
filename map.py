@@ -1,4 +1,4 @@
-import classe as classe
+import classe
 import os
 import print_hp_ascii as ascii
 

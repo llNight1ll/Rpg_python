@@ -1,14 +1,14 @@
-import classe as classe
+import classe
 import orc as anime
 import draw_hp as hp
 import time
 import game_over as end
-import fight_option as fight_option
-import run as run
+import fight_option
+import run
 import inventory_panel as inv_panel
 import print_inventory as inventory
-import sentence as sentence
-import clear as clear
+import sentence
+import clear
 
 
 
@@ -51,7 +51,7 @@ def fight(enemy, player):
                             enemy_attack(enemy, player)
                         else:
                             player.gain_xp(enemy.xp)
-                            return
+                            return True
                     else :
                         if enemy.health > 0:
 

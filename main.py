@@ -1,4 +1,4 @@
-import start as start
+import start
 
 def main() :
     start.start()

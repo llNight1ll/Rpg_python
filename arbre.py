@@ -1,5 +1,5 @@
-import classe as classe
-import clear as clear
+import classe
+import clear
 import print_hp_ascii as ascii
 VERT = "\033[92m"
 MARRON = "\033[33m"
