@@ -51,6 +51,7 @@ def fight(enemy, player):
                             enemy_attack(enemy, player)
                         else:
                             player.gain_xp(enemy.xp)
+                            player.money += enemy.money
                             return True
                     else :
                         if enemy.health > 0:
@@ -74,6 +75,8 @@ def fight(enemy, player):
 
                         else:
                             player.gain_xp(enemy.xp)
+                            player.money += enemy.money
+
                             return
                 if valeur =="2" :
                     inventory.print_armory()

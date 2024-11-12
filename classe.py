@@ -387,7 +387,7 @@ class monster(Entity) :
         speed = base_speed + round(lvl/(lvl-1) * base_speed/4 + lvl)
         health = full_hp
         self.xp = 5 * lvl
-        self.money = 30 * lvl
+        self.money = 100 * lvl
         super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
 
       else :
@@ -416,7 +416,7 @@ class monster(Entity) :
         speed = base_speed + round(lvl/(lvl-1) * base_speed/4 + lvl)
         health = full_hp
         self.xp = 10 * lvl
-        self.money = 30 * lvl
+        self.money = 300 * lvl
         super().__init__(monster_type,fist,health,strenght,defence,lvl, full_hp,speed, base_strenght, base_defence, base_full_hp, base_speed )
 
       else :

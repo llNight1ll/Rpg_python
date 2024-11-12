@@ -6,6 +6,8 @@ import inventory_panel as inv_panel
 import save
 import sentence
 import clear
+import print_hp_ascii as ascii
+import keyboard
 side = "s"
 
 
@@ -86,7 +88,14 @@ def game():
             
             elif valeur == "save":
                 save.save(classe.player)
-            
+            elif valeur == "":
+                valeur = True
+                clear.clear()
+                arbre.drawMap("s")
+
+            elif valeur == "about" or valeur == "commands" or valeur == "command" :
+                clear.clear()
+                about()
             else:
                 print(sentence.invalid_choice)
         except ValueError :
@@ -102,3 +111,37 @@ def play():
         else:
             arbre.drawMap(side)
             old_position = side
+
+
+
+def about():
+    clear.clear()
+    ascii.print_ascii_text("Movement :", "other")
+    print("")
+    ascii.print_ascii_text("z : top", "other")
+    print("")
+    ascii.print_ascii_text("s : bottom", "other")
+    print("")
+    ascii.print_ascii_text("q : left", "other")
+    print("")
+    ascii.print_ascii_text("d : right", "other")
+    print("")
+    print("")
+    ascii.print_ascii_text("Panels :", "other")
+    print("")
+    ascii.print_ascii_text("i : inventory", "other")
+    print("")
+    ascii.print_ascii_text("a : armory", "other")
+    print("")
+    ascii.print_ascii_text("shop : shop", "other")
+
+    press_enter()
+    clear.clear()
+    arbre.drawMap("s")
+
+
+
+def press_enter():
+    print(sentence.press_enter_to_continue)
+
+    keyboard.wait('enter')

@@ -4,6 +4,9 @@ import classe
 import sentence
 import clear
 import intro
+import time
+import print_hp_ascii  as ascii
+import keyboard
 def start():
     print(sentence.main_menu)
     print(sentence.create_new_game)
@@ -11,9 +14,11 @@ def start():
     print(sentence.about)
     print(sentence.exit)
     accept = False
+    
     while accept == False:
+        valeur = None
+
         try:
-            valeur = None
             valeur = int(input(sentence.enter_your_choice))
 
             if valeur == 1:
@@ -22,7 +27,12 @@ def start():
                 clear.clear()
                 name = str(input(sentence.enter_your_name))
                 classe.player.name = name
-                intro.print_introduction()
+                try:
+                    intro.print_introduction()
+                except :
+                    print(sentence.invalid_choice)
+                    time.sleep(2)
+                    start()
 
             elif valeur == 2:
                 accept = True
@@ -48,8 +58,32 @@ def start():
 
 
 def about():
-    print("Movement :")
-    print("z = top")
-    print("s = bottom")
-    print("q = left")
-    print("d = right")
+    clear.clear()
+    ascii.print_ascii_text("Movement :", "other")
+    print("")
+    ascii.print_ascii_text("z : top", "other")
+    print("")
+    ascii.print_ascii_text("s : bottom", "other")
+    print("")
+    ascii.print_ascii_text("q : left", "other")
+    print("")
+    ascii.print_ascii_text("d : right", "other")
+    print("")
+    print("")
+    ascii.print_ascii_text("Panels :", "other")
+    print("")
+    ascii.print_ascii_text("i : inventory", "other")
+    print("")
+    ascii.print_ascii_text("a : armory", "other")
+    print("")
+    ascii.print_ascii_text("shop : shop", "other")
+    press_enter()
+    clear.clear()
+    start()
+
+
+
+def press_enter():
+    print(sentence.press_enter_to_continue)
+
+    keyboard.wait('enter')
