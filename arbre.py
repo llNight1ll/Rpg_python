@@ -142,6 +142,7 @@ def print_arbre_player(number_of_tree,player_sprite):
 
 
 def drawMap(side):
+    #Print the map
     clear.clear()
     m = 9
     n = 9
