@@ -1,6 +1,6 @@
 import classe
 import spawner_entity as spawner
-import arbre as arbre
+import drawmap as draw
 import print_inventory as inventory
 import inventory_panel as inv_panel
 import save
@@ -93,7 +93,7 @@ def game():
             elif valeur == "":
                 valeur = True
                 clear.clear()
-                arbre.drawMap("s")
+                draw.drawMap("s")
 
             elif valeur == "about" or valeur == "commands" or valeur == "command" :
                 clear.clear()
@@ -106,14 +106,14 @@ def game():
 def play():
     #Draw the player and the map.
     #Change the sprite of the player  when the direction change
-    arbre.drawMap("s")
+    draw.drawMap("s")
     old_position = ("s")
     while True:
         side = game()
         if (side != "s" and side != "q" and side != "d" and side != "z"):
-            arbre.drawMap(old_position)
+            draw.drawMap(old_position)
         else:
-            arbre.drawMap(side)
+            draw.drawMap(side)
             old_position = side
 
 
@@ -141,7 +141,7 @@ def about():
 
     press_enter()
     clear.clear()
-    arbre.drawMap("s")
+    draw.drawMap("s")
 
 
 

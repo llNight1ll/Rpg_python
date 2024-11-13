@@ -1,6 +1,6 @@
 import sentence
 import clear
-import arbre
+import drawmap as draw
 import print_hp_ascii as ascii
 
 def inventory(player, type = ""):
@@ -15,7 +15,7 @@ def inventory(player, type = ""):
             #Exit inventory, armory, shop
             if value == "exit" or value == 0:
                 clear.clear()
-                arbre.drawMap("s")
+                draw.drawMap("s")
                 break
             #Use object/weapon
             else :

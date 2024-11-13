@@ -1,6 +1,6 @@
 import classe
 import os
-import arbre
+import drawmap as draw
 import time
 import fight
 import fight_animation as anime
@@ -112,7 +112,7 @@ def spawn_entity(player, is_boss = False):
 
 def found_enemy():
     for i in range(4):
-        arbre.drawMap("z")
+        draw.drawMap("z")
         time.sleep(0.2)
         clear.clear()
         time.sleep(0.2)
