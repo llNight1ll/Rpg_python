@@ -1,6 +1,7 @@
 import pickle
 
 def save(player):
+    #Write the player datas into a file.dat
     save_file ="save.dat"
     data = {
         "name": player.name,
@@ -34,6 +35,7 @@ def save(player):
 
 
 def load_game(player, save_file="save.dat"):
+    #Load the game
     try:
         with open(save_file, "rb") as file:
             data = pickle.load(file)

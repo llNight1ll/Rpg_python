@@ -816,10 +816,10 @@ def enemy_attack_animation(enemy):
   i = 1
 
   while i < 5 :
-    # Nombre d'espaces pour décaler le dessin
+    #Number of spaces to shift the drawing
     indent = " " * (50* (5-i))
 
-    # Ajouter des espaces avant chaque ligne de l'orc
+    #Shift the drawing to make the attack animation
     orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
     print(orc_centered)
     time.sleep(0.1)
@@ -827,10 +827,12 @@ def enemy_attack_animation(enemy):
     i += 1
   i = 1
   while i < 5 :
-    # Nombre d'espaces pour décaler le dessin
+    #Number of spaces to shift the drawing
+
     indent = " " * (50*i)
 
-    # Ajouter des espaces avant chaque ligne de l'orc
+    #Shift the drawing to make the attack animation
+
     orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
     print(orc_centered)
     time.sleep(0.1)
@@ -839,7 +841,7 @@ def enemy_attack_animation(enemy):
       
   indent = " " * 250
 
-  # Ajouter des espaces avant chaque ligne de l'orc
+  
   orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
   print(orc_centered)
 
@@ -857,14 +859,15 @@ def player_attack_animation(enemy):
 
   clear.clear()
   while i < 5 :
-    # Nombre d'espaces pour décaler le dessin
+    #Number of spaces to shift the drawing
+
 
     indent = " " * (50*i)
     indent2 = " " * (250 - (50*i))
 
 
 
-    # Ajouter des espaces avant chaque ligne de l'orc
+    #Shift the drawing to make the attack animation
     orc_centered = "\n".join([indent + line1  + indent2 + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
     print(orc_centered)
     time.sleep(0.1)
@@ -872,12 +875,13 @@ def player_attack_animation(enemy):
     i += 1
 
   while i < 5 :
-    # Nombre d'espaces pour décaler le dessin
+    #Number of spaces to shift the drawing
     indent = " " * (50* (5-i))
     indent2 = " " * (250 - (50* (5-i)))
 
 
-    # Ajouter des espaces avant chaque ligne de l'orc
+    #Shift the drawing to make the attack animation
+
     orc_centered = "\n".join([ indent + line1  + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
     print(orc_centered)
     time.sleep(0.1)
@@ -888,12 +892,13 @@ def player_attack_animation(enemy):
       
   indent = " " * 250
 
-  # Ajouter des espaces avant chaque ligne de l'orc
   orc_centered = "\n".join([line1 + indent + line2 for line1, line2 in zip(player.splitlines(), text.splitlines())])
   print(orc_centered)
 
 
 def neutre(enemy):
+
+  #Draw the enemy and the player when not attacking
   if enemy.monster_type == "Orc":
     text = orc
   elif enemy.monster_type == "Gobelin":

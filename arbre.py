@@ -109,6 +109,7 @@ player = player_side_back
 
 # Afficher le motif avec des couleurs
 def print_arbre(number_of_tree):
+    #Print a line of tree
     for ligne in arbre.splitlines():
         ligne_coloree = ligne.replace("+", f"{VERT}+{RESET}").replace("*", f"{MARRON}*{RESET}")
         for i in range(number_of_tree):
@@ -121,6 +122,7 @@ def print_player():
         print(ligne_coloree+ "                     ")
 
 def print_arbre_player(number_of_tree,player_sprite):
+    # Print the line where is thee player
     ligne_player = player_sprite.splitlines()
     ligne_arbre = arbre.splitlines()
     

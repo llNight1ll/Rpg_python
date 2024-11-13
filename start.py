@@ -8,6 +8,7 @@ import time
 import print_hp_ascii  as ascii
 import keyboard
 def start():
+    #Start options
     print(sentence.main_menu)
     print(sentence.create_new_game)
     print(sentence.load_saved_game)
@@ -16,11 +17,13 @@ def start():
     accept = False
     
     while accept == False:
-        valeur = None
 
         try:
+            valeur = None
+
             valeur = int(input(sentence.enter_your_choice))
 
+            #Start a new game
             if valeur == 1:
                 accept = True
                 print(valeur)
@@ -34,17 +37,20 @@ def start():
                     time.sleep(2)
                     start()
 
+            #Load a game
             elif valeur == 2:
                 accept = True
                 print(valeur)
                 save.load_game(classe.player)
                 create_game.create_game()
 
+            #Show commands
             elif valeur == 3:
                 accept = True
                 print(valeur)
                 about()
-
+            
+            #Quit the game
             elif valeur == 4:
                 accept = True
                 print(valeur)

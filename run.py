@@ -1,6 +1,7 @@
 import os
 
 def run(enemy, player):
+    #Determine the chance of escaping the fight
     status = False
     chance_of_escape =  (player.speed - enemy.speed) 
 

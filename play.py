@@ -13,11 +13,13 @@ side = "s"
 
 def game():
     accept = False
+     #Gameloop
     while accept == False:
         try:
             valeur = None
             valeur = str(input(sentence.enter_your_choice))
 
+            
             if valeur == "z":
                 accept = True
                 if (classe.player.position_y  > 0) :
@@ -102,6 +104,8 @@ def game():
             print(sentence.invalid_choice)
 
 def play():
+    #Draw the player and the map.
+    #Change the sprite of the player  when the direction change
     arbre.drawMap("s")
     old_position = ("s")
     while True:

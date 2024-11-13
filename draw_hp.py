@@ -10,6 +10,7 @@ def draw_hp_ennemy(enemy ):
     indent = " " * 400
     sys.stdout.write(indent)   
 
+    #Animation to show the hp
     for k in range(20):
 
 
@@ -31,7 +32,8 @@ def draw_hp_ennemy(enemy ):
         
         
 
-    
+    #Animation to show the hp remaning
+
     for i in range(20 - lenght_hp):
         sys.stdout.write("\033[31m\u25A0\033[0m")
         sys.stdout.flush()
@@ -53,6 +55,8 @@ def draw_hp_player(player):
     indent = " " * 50
     sys.stdout.write(indent)
 
+    #Animation to show the hp
+
     for k in range(20):
         sys.stdout.write("\033[32m\u25A0\033[0m")
         sys.stdout.flush()
@@ -72,7 +76,7 @@ def draw_hp_player(player):
         
         
 
-    
+    #Animation to draw the hp remaining
     for i in range(20 - lenght_hp):
         sys.stdout.write("\033[32m\u25A0\033[0m")
         sys.stdout.flush()

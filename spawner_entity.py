@@ -11,6 +11,7 @@ import sys
 import clear
 
 def spawn_entity(player, is_boss = False):
+    #Exception for boss fight
     enemy = None
     if is_boss == True :
         enemy = classe.boss
@@ -31,12 +32,15 @@ def spawn_entity(player, is_boss = False):
         
         return enemy
     
+   #Decide if a monster is present 
     entity_presence = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
+    #If a monster is present :
     if entity_presence <= 2 :
 
         random_enemy = int.from_bytes(os.urandom(1), "big") % 10 + 1
 
+        #If the monster is an orc :
         if random_enemy <= 5 : 
 
             random_lvl = int.from_bytes(os.urandom(1), "big") % (player.position_y + 3) + 1
@@ -45,7 +49,7 @@ def spawn_entity(player, is_boss = False):
 
 
 
-
+        #If the monster is an Gobelin :
         elif random_enemy > 5 : 
 
             random_lvl = int.from_bytes(os.urandom(1), "big") % ( player.position_y + 3) + 1
@@ -65,6 +69,7 @@ def spawn_entity(player, is_boss = False):
         
         return enemy
 
+    #If a potion is found :
     elif entity_presence == 3 :
 
         effect = ""

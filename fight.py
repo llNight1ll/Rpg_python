@@ -14,7 +14,7 @@ import clear
 
 def fight(enemy, player):
     time.sleep(1)
-
+    #Fight loop
     while enemy.health > 0 and player.health > 0:
         accept = False
         while accept == False:
@@ -26,9 +26,10 @@ def fight(enemy, player):
                 valeur = str(input(sentence.enter_your_choice))
                 print(enemy.speed)
 
-
+                #Attack enemy
                 if valeur == "1":
                     accept = True
+                    #Player attack first
                     if player.speed >= enemy.speed:
                             
                         for id, object in player.armory.items():
@@ -45,14 +46,19 @@ def fight(enemy, player):
                         hp.draw_hp_player(player)
                         time.sleep(1)
 
-
+                        #If player is defeated
                         if enemy.health > 0:
 
                             enemy_attack(enemy, player)
+
+                        #If enemy is defeated
+
                         else:
                             player.gain_xp(enemy.xp)
                             player.money += enemy.money
                             return True
+                        
+                    #Enemy attack first
                     else :
                         if enemy.health > 0:
 
@@ -72,12 +78,13 @@ def fight(enemy, player):
                             hp.draw_hp_ennemy(enemy)
                             hp.draw_hp_player(player)
                             time.sleep(1)
-
+                        #If enemy is defeated
                         else:
                             player.gain_xp(enemy.xp)
                             player.money += enemy.money
 
                             return
+                #Open armory
                 if valeur =="2" :
                     inventory.print_armory()
                     print(sentence.exit_armory)  
@@ -87,6 +94,7 @@ def fight(enemy, player):
                     if has_used == True:
                         enemy_attack(enemy, player)
 
+                #Open inventory
                 if valeur ==  "3":
                     inventory.print_inventory()
                     print()  
@@ -99,7 +107,7 @@ def fight(enemy, player):
                     
                     if has_used == True:
                         enemy_attack(enemy, player)
-
+                #Escape the fight
                 if valeur == "4":
                     escape = run.run(enemy,player)
                     if escape == True :
@@ -114,6 +122,7 @@ def fight(enemy, player):
 
 
 def enemy_attack(enemy, player):
+    #Enemy attack phase
     anime.enemy_attack_animation(enemy)
     player.loose_hp(round(enemy.strenght / (player.defence)))
     hp.draw_hp_ennemy(enemy)
