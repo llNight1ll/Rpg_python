@@ -4,7 +4,6 @@ import draw_hp as hp
 import time
 import game_over as end
 import fight_option
-import run
 import inventory_panel as inv_panel
 import print_inventory as inventory
 import sentence
@@ -109,11 +108,7 @@ def fight(enemy, player):
                         enemy_attack(enemy, player)
                 #Escape the fight
                 if valeur == "4":
-                    escape = run.run(enemy,player)
-                    if escape == True :
-                        return
-                    else :
-                        enemy_attack(enemy, player)
+                    return
 
 
 
