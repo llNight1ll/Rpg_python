@@ -464,7 +464,6 @@ player = person("Bob",5,0)
 boss = monster("Boss",1)
 
 player.add_object(fist, "weapon")
-player.add_object(blade, "weapon")
 
 player.add_object(blade, "shop")
 player.add_object(blade_lvl_2, "shop")
