@@ -98,6 +98,8 @@ def game():
             elif valeur == "about" or valeur == "commands" or valeur == "command" :
                 clear.clear()
                 about()
+            elif valeur == "unlimited coins" :
+                classe.player.money += 10000000
             else:
                 print(sentence.invalid_choice)
         except ValueError :
