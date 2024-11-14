@@ -231,7 +231,7 @@ class person(Entity) :
     self.money = 0
     self.equiped_weapon = fist    
 
-    super().__init__(name,fist,10,5,3, 1, 10,4,5,3,10,4)
+    super().__init__(name,fist,10,5,3, 1, 10,4,5,4,10,4)
   
   def gain_xp(self, xp):
     self.current_xp += xp
