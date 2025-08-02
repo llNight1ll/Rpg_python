@@ -74,6 +74,7 @@ Pour terminer le jeu, vous devrez :
 
 <img width="1245" height="884" alt="image" src="https://github.com/user-attachments/assets/46300e65-656f-49f8-bbfa-b6ecea9ae18d" />
 <img width="1566" height="253" alt="image" src="https://github.com/user-attachments/assets/9af5c3bd-23d4-4cc9-8dba-7c70bc766d5d" />
+<img width="1901" height="979" alt="image" src="https://github.com/user-attachments/assets/caf328bc-0793-44e6-a95a-ec26f5a19adc" />
 ![Fight Demo](https://github.com/user-attachments/assets/afbc4ec8-128b-4910-834e-fd00c065d768)
 
 
