@@ -1,4 +1,4 @@
-# 🐍 RPG Python
+![Vidéo sans titre ‐ Réalisée avec Clipchamp](https://github.com/user-attachments/assets/f1284b6e-54f2-4bca-988b-87fd966f009a)# 🐍 RPG Python
 
 Un jeu **RPG textuel** développé en **Python**, entièrement jouable dans le terminal. Il s'inspire des mécaniques de **Pokémon**, avec des combats, des monstres, un système d'inventaire et une boutique.
 
@@ -73,3 +73,7 @@ Pour terminer le jeu, vous devrez :
 ## 🖼️ Images
 
 <img width="1245" height="884" alt="image" src="https://github.com/user-attachments/assets/46300e65-656f-49f8-bbfa-b6ecea9ae18d" />
+<img width="1566" height="253" alt="image" src="https://github.com/user-attachments/assets/9af5c3bd-23d4-4cc9-8dba-7c70bc766d5d" />
+![Vidéo sans titre ‐ Réalisée avec Clipchamp](https://github.com/user-attachments/assets/afbc4ec8-128b-4910-834e-fd00c065d768)
+
+
